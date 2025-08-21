@@ -1,0 +1,50 @@
+
+.dark-mode, .dark-mode *,.container, .main, .main-header
+{
+    background-color: #000; 
+    color: #fff;
+    caret-color: #d10303
+} 
+
+.dark-mode .main-header {
+    background: #000;
+    color: #fff
+}
+
+.footer,
+.footer .primary-button,
+.footer .primary-button span,
+.footer .footer-item
+{
+    background: transparent;
+    color: #fff
+}
+
+
+.footer .primary-button:hover,
+.footer .footer-item:hover
+{
+    background-color: #ffffff56;
+    color: #fff
+}
+
+.footer .footer-item a,
+.footer .footer-item a:hover
+{
+    background: transparent    
+}
+
+.CodeMirror *,
+.CodeMirror textarea, 
+.CodeMirror .CodeMirror-cursors,
+.CodeMirror .CodeMirror-cursors .CodeMirror-cursors,
+.CodeMirror .CodeMirror-code,
+.CodeMirror .CodeMirror-code .input,
+.CodeMirror .cm-s-default .CodeMirror-empty .CodeMirror-focused
+.CodeMirror-line,
+.CodeMirror-cursors,
+.CodeMirror-lines
+{
+    caret-color: #d10303
+}
+
