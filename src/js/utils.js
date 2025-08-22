@@ -107,7 +107,6 @@ function SwitchTheme() {
         btn.innerHTML = 'Light'
         logo.src = imagens.logo_light
 
-        if (debug) { console.log('func SwitchTheme - Dark to Light') };
     };
 
     if (themelight) {
@@ -116,7 +115,6 @@ function SwitchTheme() {
         btn.innerHTML = 'Dark'
         logo.src = imagens.logo_dark
 
-        if (debug) { console.log('func SwitchTheme - Light to dark') };
     };
 
     localStorage.setItem('color-mode', theme);
