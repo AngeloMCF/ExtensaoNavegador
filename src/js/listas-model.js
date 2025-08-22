@@ -25,12 +25,17 @@ const Clientes = [
     // {
     //     // MODELO
     //     nome: "CLIENTE",
-    //     PROD_URL: "URL_PRODUCAO", // opcional, usado para setar ambiente de produção
-    //     HML_URL: "URL_HMOLOGACAO", // opcional, usado para setar ambiente de homologação
-    //     DEV_URL: "URL_DESENVOLVIEMTO", // opcional, usado para setar ambiente de desenvolvimento
-    //     HML_BASE: "BASE_HOMOLG_CLIENTE", // opcional, usado para setar base de homologação
-    //     isolado: true // opcional, usado para setar ambiente isolado (default false)
-    //     title: "Exemplo de Mensagem" // opcional, usado para setar título do link
+    //     PROD_URL: "URL_PRODUCAO",        // (opcional) usado para setar ambiente de produção
+    //     HML_URL: "URL_HMOLOGACAO",       // (opcional) usado para setar ambiente de homologação
+    //     DEV_URL: "URL_DESENVOLVIEMTO",   // (opcional) usado para setar ambiente de desenvolvimento
+    //     HML_BASE: "BASE_HOMOLG_CLIENTE", // (opcional) usado para setar base de homologação
+    //          ** Se comentado HML_URL ou DEV_URL ou HML_BASE, não irá aparecer o link  mas o nome do cliente é exibido
+    //     isolado: true                    // (opcional) usado para setar ambiente isolado (default false)    
+    //     title: "Exemplo de Mensagem"     // (opcional) usado para setar título do link
+    //     textOnly: true                   // (opcional) usado para exibir apenas o nome do cliente, sem link
+    //                                      //            usar somente qunado existe um html dentro de ./src/hml/
+    //                                      //            se passado em link regular não irá funcionar 
+    
     // },
     {
         nome: "Ambiente Isolado",
@@ -145,11 +150,11 @@ const Wiki = [
 ];
 
 const Pages = [
-    // {
-    //     nome: "Pull requests",
-    //     URL: "./pullrequest.html",
-    //     target: '_self'
-    // },
+    {
+        nome: "Pull requests",
+        URL: "./pullrequest.html",
+        target: '_self'
+    },
     {
         nome: "Outlook",
         URL: "https://outlook.office.com/mail/"

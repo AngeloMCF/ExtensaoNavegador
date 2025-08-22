@@ -33,7 +33,7 @@ function addDiv(div_id = String, page = String) {
     content.setAttribute('id', div_id);
     content.setAttribute('class', 'grid-container');
 
-    try{
+    try {
 
         dt.append(header)
         dt.append(content)
@@ -149,7 +149,8 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                     };
                 }
                 else {
-                    if (["PROD", "HML", "DEV"].includes(chave)) {
+                    if ((["PROD", "HML", "DEV"].includes(chave)
+                        || (lista[i].nome && lista[i].textOnly))) {
                         conteudo.setAttribute('class', 'grid-item half-hidden');
                         conteudo.append(document.createElement('p').textContent = lista[i].nome);
                         objt.divContent.append(conteudo);

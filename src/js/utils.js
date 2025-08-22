@@ -1,7 +1,11 @@
-
-const version = 'v3.5.0';
-const versionElement = document.getElementById('version')
-versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? version : 'v0.0.0';
+try {
+    const version = chrome.runtime.getManifest().version;
+    const versionElement = document.getElementById('version')
+    versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? version : 'v0.0.0';
+}
+catch (e) {
+    console.error('Erro ao obter a versão da extensão:', e);
+}
 
 
 const btn = document.getElementById('btnSw');
@@ -9,10 +13,10 @@ const logo = document.getElementById('logo-img');
 var bbtn = document.getElementById("btnSw").addEventListener("click", SwitchTheme);
 
 
-if (!localStorage.getItem('version')){
+if (!localStorage.getItem('version')) {
     localStorage.setItem('version', version);
 }
-else if (localStorage.getItem('version') != version){
+else if (localStorage.getItem('version') != version) {
     // console.log('Atualizou versão', localStorage.getItem('version'), '->', version)
     localStorage.setItem('version', version);
     LimpalocalStorage();
