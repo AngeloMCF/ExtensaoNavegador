@@ -38,31 +38,41 @@ function LimpalocalStorage() {
 }
 
 function switchMonth() {
+    const date = new Date();
+    var updateHtml = true;
+    const bodyElement = document.body;
+    const headElement = document.head;
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.type = 'text/css';
 
-    switch (new Date().getMonth() /*0-11*/) {
+    switch (date.getMonth() /*0-11*/) {
         case 11: // Dezembro
-            // reveillon
-            if (new Date().getDate() >= 27) {
-                imagens.logo_dark = imagens.logo_light = imagens.logo_reveillon
-                break;
-            }
-            imagens.logo_dark = imagens.logo_light = imagens.logo_natal
-            break;
-        case 9: // Outubro
-            imagens.logo_dark = imagens.logo_light = imagens.logo_halloween
-            break;
-        case 3: // Abril
-            imagens.logo_dark = imagens.logo_light = imagens.logo_pascoa
-            break;
         case 0: // Janeiro
             // reveillon
-            if (new Date().getDate() <= 7) {
-                imagens.logo_dark = imagens.logo_light = imagens.logo_reveillon
+            if ((date.getDate() >= 27 && date.getMonth() == 11) || (date.getDate() <= 7 && date.getMonth() == 0)) {
+                linkElement.href = '../css/style-reveillon.css';
+                bodyElement.setAttribute('id', 'reveillon');
                 break;
             }
+            linkElement.href = '../css/style-natal.css';
+            bodyElement.setAttribute('id', 'natal');
+            break;
+        case 9: // Outubro
+            linkElement.href = '../css/style-halloween.css';
+            bodyElement.setAttribute('id', 'halloween');
+            break;
+        case 3: // Abril
+            linkElement.href = '../css/style-pascoa.css';
+            bodyElement.setAttribute('id', 'pascoa');
             break;
         default:
+            updateHtml = false
             break;
+    }
+
+    if (updateHtml) {
+        headElement.append(linkElement)
     }
 }
 
