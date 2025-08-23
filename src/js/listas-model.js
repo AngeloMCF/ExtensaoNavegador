@@ -35,7 +35,7 @@ const Clientes = [
     //     textOnly: true                   // (opcional) usado para exibir apenas o nome do cliente, sem link
     //                                      //            usar somente qunado existe um html dentro de ./src/hml/
     //                                      //            se passado em link regular não irá funcionar 
-    
+
     // },
     {
         nome: "Ambiente Isolado",
@@ -123,6 +123,22 @@ const Tools = [
     {
         nome: "ChatGPT",
         URL: "https://chatgpt.com/",
+    },
+    {
+        nome: "HTML Viewer",
+        URL: "https://html.onlineviewer.net/",
+    }
+];
+
+const textosCopiar = [
+    {
+        nome: "Almoço",
+        icone: true
+    },
+    {
+        nome: "Boa tarde, entrando em reunião, assim que puder retorno.",
+        icone: true,
+        id: "mensagem-reuniao"
     }
 ];
 
@@ -169,7 +185,7 @@ const Pages = [
     }
 ];
 
-// Não implementado, colocar direto na pagina de pull request
+// Não implementado, colocar direto na pagina(html) de pull request
 const pullRequest = [
     {
         nome: 'Banco Exmplo',

@@ -1,12 +1,16 @@
+const icons = {
+    copy_dark: '../icons/copy-two-paper-sheets-interface-symbol.png',
+    copy_light: '../icons/copy.png'
+}
+
 try {
     const version = chrome.runtime.getManifest().version;
     const versionElement = document.getElementById('version')
-    versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? version : 'v0.0.0';
+    versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? `v${version}` : 'v0.0.0';
 }
 catch (e) {
     console.error('Erro ao obter a versão da extensão:', e);
 }
-
 
 const btn = document.getElementById('btnSw');
 const logo = document.getElementById('logo-img');
@@ -17,7 +21,6 @@ if (!localStorage.getItem('version')) {
     localStorage.setItem('version', version);
 }
 else if (localStorage.getItem('version') != version) {
-    // console.log('Atualizou versão', localStorage.getItem('version'), '->', version)
     localStorage.setItem('version', version);
     LimpalocalStorage();
 }
@@ -105,7 +108,7 @@ function SwitchTheme() {
         theme = 'light'
         themedark.id = theme
         btn.innerHTML = 'Light'
-        logo.src = imagens.logo_light
+        // logo.src = imagens.logo_light
 
     };
 
@@ -113,7 +116,7 @@ function SwitchTheme() {
         theme = 'dark'
         themelight.id = theme
         btn.innerHTML = 'Dark'
-        logo.src = imagens.logo_dark
+        // logo.src = imagens.logo_dark
 
     };
 
@@ -151,7 +154,6 @@ function linkSuporte() {
         && SuporteUrl !== suporteElement.getAttribute('href')) {
 
         if (!localStorage.getItem('SuporteUrl') || localStorage.getItem('SuporteUrl') !== SuporteUrl) {
-            console.log(localStorage.getItem('SuporteUrl'));
 
             if (SuporteUrl.includes('www.')) {
                 SuporteUrl = SuporteUrl.replace('www.', 'http://');
@@ -171,10 +173,25 @@ function linkSuporte() {
 
         suporteElement.setAttribute('href', SuporteUrl);
         suporteElement.setAttribute('title', SuporteMensagem);
-        // console.log(localStorage.getItem('SuporteUrl'));
     };
 
 }
+
+function copyToClipBoard(idDoElemento) {
+
+    const elemento = document.getElementById(idDoElemento);
+
+    if (elemento) {
+        const texto_tooltip = elemento.getAttribute('data-tooltip');
+        navigator.clipboard.writeText(elemento.textContent)
+        elemento.setAttribute('data-tooltip', 'Copiado');
+
+        setTimeout(() => {
+            elemento.setAttribute('data-tooltip', texto_tooltip);
+        }, 2000);
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // document.getElementById('link-suporte').addEventListener('click', function(event) {

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Atalhos Pessoais",
   "description": "Atalhos rápidos",
-  "version": "3.6.1",
+  "version": "3.6.3",
   "icons": { "128": "src/images/placeholder_icon_location_128.png" },
   "action": {
     "default_icon": "src/images/placeholder_icon_location_128.png",

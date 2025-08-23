@@ -99,34 +99,41 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
 
             for (i in lista) {
 
-                var conteudo = document.createElement('div');
+                const conteudo = document.createElement('div');
 
-                if (lista[i][chave_url]) {
+                if (lista[i][chave_url] || lista[i].isolado) {
 
                     conteudo.setAttribute('class', 'grid-item');
 
-                    var link = document.createElement('a');
-                    link.setAttribute('href', lista[i][chave_url]);
+                    if (lista[i][chave_url]) {
 
-                    link.setAttribute('target', (lista[i].target != undefined && lista[i].target.length > 0) ? lista[i].target : '_blank');
+                        const link = document.createElement('a');
+                        link.setAttribute('href', lista[i][chave_url]);
 
-                    if (lista[i].title || chave == "HML") {
-                        if (chave == "HML") {
-                            for (base in BasesHML) {
-                                for (cliente in BasesHML[base].Clientes) {
-                                    if (BasesHML[base].Clientes[cliente].toLowerCase() === lista[i].nome.toLowerCase())
-                                        var _base = BasesHML[base].base
+                        link.setAttribute('target', (lista[i].target != undefined && lista[i].target.length > 0) ? lista[i].target : '_blank');
+
+                        if (lista[i].title || chave == "HML") {
+                            if (chave == "HML") {
+                                for (base in BasesHML) {
+                                    for (cliente in BasesHML[base].Clientes) {
+                                        if (BasesHML[base].Clientes[cliente].toLowerCase() === lista[i].nome.toLowerCase())
+                                            var _base = BasesHML[base].base
+                                    }
+                                }
+                                if (!_base) {
+                                    _base = lista[i].HML_BASE ? lista[i].HML_BASE : 'Base não informada';
                                 }
                             }
-                            if (!_base) {
-                                _base = lista[i].HML_BASE ? lista[i].HML_BASE : 'Base não informada';
-                            }
-                        }
 
-                        link.setAttribute('title', chave == "HML" && _base ? _base : lista[i].title);
-                    };
-                    link.textContent = lista[i].nome;
-                    conteudo.append(link);
+                            link.setAttribute('title', chave == "HML" && _base ? _base : lista[i].title);
+                        };
+                        link.textContent = lista[i].nome;
+                        conteudo.append(link);
+                    }
+                    else {
+                        conteudo.setAttribute('class', 'grid-item half-hidden');
+                        conteudo.append(document.createElement('p').textContent = lista[i].nome);
+                    }
 
                     objt.divContent.append(conteudo);
 
@@ -142,19 +149,60 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                     // SOMENTE ESTÉTICA
                     if (lista[i].isolado) {
                         for (var i = 0; i < 3; i++) {
-                            var vazio = document.createElement('div');
+                            const vazio = document.createElement('div');
                             vazio.setAttribute('class', 'grid-item');
                             objt.divContent.append(vazio);
                         };
                     };
                 }
+                else if (lista[i].isolado) {
+                    // SOMENTE ESTÉTICA
+                    if (lista[i].isolado) {
+                        for (var i = 0; i < 3; i++) {
+                            const vazio = document.createElement('div');
+                            vazio.setAttribute('class', 'grid-item');
+                            objt.divContent.append(vazio);
+                        };
+                    };
+
+                }
                 else {
-                    if ((["PROD", "HML", "DEV"].includes(chave)
-                        || (lista[i].nome && lista[i].textOnly))) {
+
+                    if (lista[i].icone) {
+                        conteudo.setAttribute('clas', 'grid-item half-hidden')
+                        const texto_tooltip = 'Copiar'
+                        const id = lista[i].id ? lista[i].id : 'btn-' + lista[i].nome.toLowerCase().normalize('NFD').replace(/[\s\u0300-\u036f]/g, '');
+
+                        const button = document.createElement('button');
+                        button.setAttribute('id', id);
+                        button.setAttribute('class', 'copy-btn half-hidden tooltip');
+                        button.setAttribute('data-tooltip', texto_tooltip);
+                        button.onclick = () => copyToClipBoard(id);
+                        button.textContent = lista[i].nome;
+
+                        const img = document.createElement('img');
+                        img.src = localStorage.getItem('color-mode') === 'dark' ? icons.copy_dark : icons.copy_light
+                        img.alt = 'icone';
+                        img.width = 12;
+                        img.height = 12;
+                        img.setAttribute('style', 'vertical-align: middle; margin-right: 8px; margin-left: 4px;');
+                        img.setAttribute('class', 'tooltip');
+
+                        button.append(img);
+                        conteudo.append(button)
+                    }
+
+                    if (["PROD", "HML", "DEV"].includes(chave)) {
                         conteudo.setAttribute('class', 'grid-item half-hidden');
                         conteudo.append(document.createElement('p').textContent = lista[i].nome);
-                        objt.divContent.append(conteudo);
                     }
+                    // else if (lista[i].nome && lista[i].textOnly) {
+                    //     conteudo.setAttribute('class', 'grid-item half-hidden');
+                    //     const p = document.createElement('p')
+                    //     p.textContent = lista[i].nome
+                    //     conteudo.append(p);
+                    // }
+                    objt.divContent.append(conteudo);
                 }
 
             };

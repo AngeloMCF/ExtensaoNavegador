@@ -26,43 +26,51 @@ const NomesTela = [
     //     chave: 'PROD' <Chave_do_dicionario_somente_identifcar_homologação>// Não ncessário
     // },
     {
-        id :"#prod",
-        h1 : "Produção",
+        id: "#prod",
+        h1: "Produção",
         lista: Clientes,
-        chave_url : "PROD_URL",
-        chave : "PROD",
+        chave_url: "PROD_URL",
+        chave: "PROD",
         page: 'home'
     }
-    ,{
-        id :"#hml",
-        h1 : '<a href="#" target="_blank" title="Bases Homologação"><h1>Homologação</h1></a>',
+    , {
+        id: "#hml",
+        h1: '<a href="#" target="_blank" title="Bases Homologação"><h1>Homologação</h1></a>',
         lista: Clientes,
-        chave_url : "HML_URL",
-        chave : "HML",
+        chave_url: "HML_URL",
+        chave: "HML",
         page: 'home'
     }
-    ,{
-        id :"#dev",
-        h1 : "Desenvolvimento",
+    , {
+        id: "#dev",
+        h1: "Desenvolvimento",
         lista: Clientes,
-        chave_url : "DEV_URL",
-        chave : "DEV",
+        chave_url: "DEV_URL",
+        chave: "DEV",
         page: 'home'
     }
-    ,{
-        id :"#pages",
-        h1 : "Utilidades",
+    , {
+        id: "#pages",
+        h1: "Utilidades",
         lista: Pages,
-        chave_url : "URL",
-        chave : "PAGES",
+        chave_url: "URL",
+        chave: "PAGES",
         page: 'home'
     }
-    ,{
-        id :"#tools",
-        h1 : "Ferramentas",
+    , {
+        id: "#tools",
+        h1: "Ferramentas",
         lista: Tools,
-        chave_url : "URL",
-        chave : "TOOLS",
+        chave_url: "URL",
+        chave: "TOOLS",
+        page: 'home'
+    },
+    , {
+        id: "#textosCopiar",
+        h1: "Textos para copiar",
+        lista: textosCopiar,
+        chave_url: "URL",
+        chave: "textosCopiar",
         page: 'home'
     },
     // Não implementado, colocar direto na pagina de pull request
@@ -74,12 +82,12 @@ const NomesTela = [
     //     chave : "PullRequest",
     //     page: 'pullrequest'
     // }
-    ,{
-        id :"#wiki",
-        h1 : "Wiki",
+    , {
+        id: "#wiki",
+        h1: "Wiki",
         lista: Wiki,
-        chave_url : "url",
-        chave : "WIKI",
+        chave_url: "url",
+        chave: "WIKI",
         page: 'wiki'
     }
 ];
