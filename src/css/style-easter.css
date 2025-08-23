@@ -1,71 +1,143 @@
-#easter {
-    --color-backgruond: #fff9f9; /* fundo rosado claro */
-    --color-backgruond-button: #ffe9f0; /* botões em rosa pastel */
-    --color-backgruond-tooltip: #fff5f8; /* tooltip clarinho */
-    --color-text: #6a4e42; /* marrom chocolate */
-    --color-title: #e07ab0; /* rosa vivo */
-    --color-tooltip: #6a4e42; /* texto escuro no tooltip */
-    --color-title-a-hover: #ffb347; /* amarelo ovo */
-    --color-sep: #f5cfe6; /* divisória rosada */
-    --color-a-visited: #9d6eb0; /* lilás suave */
-    --color-rgba: 255, 182, 193; /* rosa pastel */
-    --color-rgba-alpha: 0.25;
+/* ------------------ */
+/* Easter Light Theme */
+/* ------------------ */
+#easter-light {
+    --color-backgruond: #fafafa;
+    --color-backgruond-button: #f2e6f7;
+    --color-backgruond-tooltip: #ffffff; 
+    --color-text: #2f2f2f;
+    --color-title: #7b4f9d;
+    --color-tooltip: #2f2f2f;
+    --color-title-a-hover: #c58f2e;
+    --color-sep: #e0d4eb;
+    --color-a-visited: #5f3b85;
+    --color-rgba: 123, 79, 157;
+    --color-rgba-alpha: 0.12;
     --url-logo: url(../images/logo-easter.png);
-    --color-version: #e07ab08a;
-    --color-online: rgba(0, 180, 90, 0.6); /* verde primavera */
-    --color-offline: rgba(255, 99, 99, 0.6);
+    --color-version: #7b4f9d80;
+    --color-online: rgba(0, 150, 80, 0.6);
+    --color-offline: rgba(200, 50, 50, 0.6);
 }
 
-/* Fundo coloridinho com ovos */
-body#easter {
-    background: linear-gradient(135deg, #fff9f9, #ffeefc, #fdf7ff);
+body#easter-light {
+    background: linear-gradient(135deg, #fafafa, #f7f4fa, #ffffff);
     background-attachment: fixed;
     position: relative;
     overflow-x: hidden;
 }
 
-/* ovos animados caindo */
-body#easter::before,
-body#easter::after {
-    content: "🥚 🐰 🥕";
+/* ------------------ */
+/* Easter Dark Theme  */
+/* ------------------ */
+#easter-dark {
+    --color-backgruond: #1a1a1a;
+    --color-backgruond-button: #2a1f33;
+    --color-backgruond-tooltip: #2e2236;
+    --color-text: #e6e6e6;
+    --color-title: #c58fdf;
+    --color-tooltip: #ffffff;
+    --color-title-a-hover: #ffcc66;
+    --color-sep: #3d2d46;
+    --color-a-visited: #cfa7ff;
+    --color-rgba: 197, 143, 223;
+    --color-rgba-alpha: 0.2;
+    --url-logo: url(../images/logo-easter.png);
+    --color-version: #c58fdf80;
+    --color-online: rgba(80, 200, 150, 0.7);
+    --color-offline: rgba(255, 80, 80, 0.7);
+}
+
+body#easter-dark {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #241b2c);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ------------------ */
+/* Shared Easter Style*/
+/* ------------------ */
+#easter-light h1, 
+#easter-light strong,
+#easter-dark h1, 
+#easter-dark strong {
+    text-shadow: 0 0 4px rgba(123, 79, 157, 0.2);
+}
+
+#easter-light .grid-item:hover,
+#easter-light button:hover,
+#easter-dark .grid-item:hover,
+#easter-dark button:hover {
+    background-color: rgba(var(--color-rgba), 0.1);
+    box-shadow: 0 0 6px rgba(var(--color-rgba), 0.3);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+#easter-light a:hover,
+#easter-dark a:hover {
+    color: var(--color-title-a-hover);
+    text-decoration: underline;
+}
+
+#easter-light .sep,
+#easter-dark .sep {
+    border-top: 1px solid var(--color-sep);
+}
+
+/* ------------------ */
+/* Coelho correndo 🐇 */
+/* ------------------ */
+body#easter-light::before,
+body#easter-dark::before {
+    content: "🐇";
     position: absolute;
-    top: -50px;
-    left: 20%;
-    font-size: 28px;
-    animation: eggsRain 12s linear infinite;
-    opacity: 0.4;
+    bottom: 10%;
+    left: -100px;
+    font-size: 40px;
+    animation: bunnyRun 12s linear infinite;
+    opacity: 0.6;
     pointer-events: none;
 }
 
-body#easter::after {
-    left: 70%;
-    font-size: 32px;
-    animation-duration: 15s;
-    opacity: 0.3;
+body#easter-light::after,
+body#easter-dark::after {
+    content: "🐇";
+    position: absolute;
+    bottom: 20%;
+    left: -150px;
+    font-size: 36px;
+    animation: bunnyRun 18s linear infinite;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-@keyframes eggsRain {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(120vh); }
+@keyframes bunnyRun {
+    0%   { transform: translateX(0) rotate(0deg); }
+    50%  { transform: translateX(110vw) rotate(10deg); }
+    100% { transform: translateX(0) rotate(0deg); }
 }
 
-/* títulos fofinhos */
-#easter h1, 
-#easter strong {
-    text-shadow: 0 0 6px rgba(255, 182, 193, 0.6), 
-                 0 0 12px rgba(255, 204, 229, 0.4);
+/* ------------------ */
+/* Grama animada 🌱   */
+/* ------------------ */
+body#easter-light .grass,
+body#easter-dark .grass {
+    content: "";
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to top, #3ca35c, #6ed37a);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    animation: grassWave 6s ease-in-out infinite alternate;
+    z-index: -1;
+    opacity: 0.9;
 }
 
-/* Botões/itens com efeito brilhando como ovo colorido */
-#easter .grid-item:hover,
-#easter button:hover {
-    background-color: rgba(255, 218, 185, 0.3);
-    box-shadow: 0 0 8px rgba(255, 192, 203, 0.6);
-    border-radius: 12px;
-    animation: eggGlow 1.5s infinite alternate;
-}
-
-@keyframes eggGlow {
-    from { box-shadow: 0 0 6px rgba(255, 182, 193, 0.5); }
-    to   { box-shadow: 0 0 18px rgba(255, 222, 173, 0.9); }
+@keyframes grassWave {
+    0%   { transform: scaleY(1); }
+    100% { transform: scaleY(1.05); }
 }
