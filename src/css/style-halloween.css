@@ -1,0 +1,75 @@
+#halloween {
+    --color-backgruond: #1b0d0d; /* fundo escuro avermelhado */
+    --color-backgruond-button: #3c1a1a;
+    --color-backgruond-tooltip: #2a0e0e;
+    --color-text: #ffb84d;
+    --color-title: #ff7518;
+    --color-tooltip: #fff3d6;
+    --color-title-a-hover: #ffcc00;
+    --color-sep: #4d1f1f;
+    --color-a-visited: #ff9933;
+    --color-rgba: 255, 140, 0;
+    --color-rgba-alpha: 0.15;
+    --url-logo: url(../images/logo-halloween.png);
+    --color-version: #ff75188f;
+    --color-online: rgba(0, 255, 128, 0.6);
+    --color-offline: rgba(255, 50, 50, 0.7);
+}
+
+/* Fundo com gradiente + morcegos */
+body#halloween {
+    background: linear-gradient(135deg, #0d0d0d, #1b0d0d 50%, #2d1b1b);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body#halloween #logo img{
+    src: var(--url-logo);
+}
+/* morcegos animados no fundo */
+body#halloween::before,
+body#halloween::after {
+    content: "🦇 🦇 🦇";
+    position: absolute;
+    top: 10%;
+    left: -200px;
+    font-size: 28px;
+    animation: bats 15s linear infinite;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+body#halloween::after {
+    top: 30%;
+    font-size: 34px;
+    animation-duration: 20s;
+    opacity: 0.25;
+}
+
+@keyframes bats {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    50% { transform: translateX(110vw) translateY(-30px) rotate(10deg); }
+    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+}
+
+/* Títulos com glow */
+#halloween h1, 
+#halloween strong {
+    text-shadow: 0 0 6px rgba(255, 102, 0, 0.6), 
+                 0 0 12px rgba(255, 153, 0, 0.4);
+}
+
+/* Botões e grid itens piscando como abóbora */
+#halloween .grid-item:hover,
+#halloween button:hover {
+    background-color: rgba(255, 102, 0, 0.25);
+    box-shadow: 0 0 8px rgba(255, 102, 0, 0.6);
+    border-radius: 6px;
+    animation: pumpkinGlow 1.5s infinite alternate;
+}
+
+@keyframes pumpkinGlow {
+    from { box-shadow: 0 0 6px rgba(255, 102, 0, 0.5); }
+    to   { box-shadow: 0 0 18px rgba(255, 166, 0, 0.9); }
+}
