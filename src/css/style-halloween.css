@@ -1,0 +1,143 @@
+/* ------------------ */
+/* Halloween Light 🎃 */
+/* ------------------ */
+#halloween-light {
+    --color-backgruond: #f8f8f8; /* fundo claro */
+    --color-backgruond-button: #fff2e6; /* laranja claro */
+    --color-backgruond-tooltip: #ffffff;
+    --color-text: #2a2a2a; /* texto escuro */
+    --color-title: #c44d00; /* laranja queimado */
+    --color-tooltip: #2a2a2a;
+    --color-title-a-hover: #6a1b9a; /* roxo elegante */
+    --color-sep: #e0c6b3;
+    --color-a-visited: #8e44ad; /* roxo suave */
+    --color-rgba: 196, 77, 0;
+    --color-rgba-alpha: 0.15;
+    --url-logo: url(../images/logo-halloween.png);
+    --color-version: #c44d0080;
+    --color-online: rgba(0, 150, 80, 0.6);
+    --color-offline: rgba(200, 50, 50, 0.6);
+}
+
+body#halloween-light {
+    background: linear-gradient(135deg, #fdfdfd, #fff8f2, #fff9f6);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ------------------ */
+/* Halloween Dark 🦇  */
+/* ------------------ */
+#halloween-dark {
+    --color-backgruond: #1b0d0d; /* fundo escuro */
+    --color-backgruond-button: #3c1a1a;
+    --color-backgruond-tooltip: #2a0e0e;
+    --color-text: #ffb84d; /* laranja queimado */
+    --color-title: #ff7518; /* laranja forte */
+    --color-tooltip: #fff3d6;
+    --color-title-a-hover: #ffcc00; /* amarelo ouro */
+    --color-sep: #4d1f1f;
+    --color-a-visited: #ff9933;
+    --color-rgba: 255, 140, 0;
+    --color-rgba-alpha: 0.15;
+    --url-logo: url(../images/logo-halloween.png);
+    --color-version: #ff75188f;
+    --color-online: rgba(0, 255, 128, 0.6);
+    --color-offline: rgba(255, 50, 50, 0.7);
+}
+
+body#halloween-dark {
+    background: linear-gradient(135deg, #0d0d0d, #1b0d0d 50%, #2d1b1b);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ------------------ */
+/* Shared Halloween   */
+/* ------------------ */
+#halloween-light h1, 
+#halloween-light strong,
+#halloween-dark h1, 
+#halloween-dark strong {
+    text-shadow: 0 0 6px rgba(255, 102, 0, 0.3),
+                 0 0 12px rgba(255, 153, 0, 0.25);
+}
+
+#halloween-light .grid-item:hover,
+#halloween-light button:hover,
+#halloween-dark .grid-item:hover,
+#halloween-dark button:hover {
+    background-color: rgba(var(--color-rgba), 0.12);
+    box-shadow: 0 0 8px rgba(var(--color-rgba), 0.35);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+#halloween-light a:hover,
+#halloween-dark a:hover {
+    color: var(--color-title-a-hover);
+    text-decoration: underline;
+}
+
+#halloween-light .sep,
+#halloween-dark .sep {
+    border-top: 1px solid var(--color-sep);
+}
+
+/* ------------------ */
+/* Morcegos animados 🦇*/
+/* ------------------ */
+body#halloween-light::before,
+body#halloween-dark::before {
+    content: "🦇 🦇";
+    position: absolute;
+    top: 15%;
+    left: -200px;
+    font-size: 28px;
+    animation: bats 18s linear infinite;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+body#halloween-light::after,
+body#halloween-dark::after {
+    content: "🦇";
+    position: absolute;
+    top: 30%;
+    left: -250px;
+    font-size: 34px;
+    animation: bats 25s linear infinite;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+@keyframes bats {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    50% { transform: translateX(110vw) translateY(-20px) rotate(10deg); }
+    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+}
+
+/* ------------------ */
+/* Chão de abóboras 🎃*/
+/* ------------------ */
+body#halloween-light .pumpkins,
+body#halloween-dark .pumpkins {
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to top, #ff7f50, #ffb347);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    animation: pumpkinsWave 6s ease-in-out infinite alternate;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+@keyframes pumpkinsWave {
+    0%   { transform: scaleY(1); }
+    100% { transform: scaleY(1.05); }
+}
