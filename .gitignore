@@ -1,5 +1,8 @@
+*venv
+python/_*
+
 .vscode
 src/js/listas.js
 src/js/config.js
 
-src/images/_*
+src/*/_*
