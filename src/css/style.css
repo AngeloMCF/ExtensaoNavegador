@@ -1,18 +1,25 @@
+:root {
+    --color-rgba: 0, 0, 0;
+    --color-offline: rgba(255, 0, 0, 0.5);
+    /* --scrollbar-color:rgba(0, 255, 213, 0.7) rgba(0, 0, 0, 0.2); */
+    --scrollbar-color:rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2)
+}
+
 #light {
     --color-backgruond: lightgray;
     --color-backgruond-button: #dfdfdf;
-    --color-text: #000000;
+    --color-backgruond-tooltip: rgba(0, 0, 0, 0.1);
+    --color-text: #000;
+    --color-text-half-hidden: rgba(0, 0, 0, 0.5);
     --color-title: #696767;
-    --color-tooltip: #fff;
+    --color-tooltip: #000;
     --color-title-a-hover: #000000a8;
-    --color-sep: #dadada;
+    --color-sep: #737373;
     --color-a-visited: #000;
-    --color-rgba: 0, 0, 0;
     --color-rgba-alpha: 0.1;
     --url-logo: url(../images/logo-light.png);
     --color-version: #696767b6;
     --color-online: rgba(0, 105, 0, 0.5);
-    --color-offline: rgba(255, 0, 0, 0.5);
 }
 
 #dark {
@@ -20,18 +27,16 @@
     --color-backgruond-button: #FFF;
     --color-backgruond-tooltip: #FFF;
     --color-text: #FFF;
+    --color-text-half-hidden: rgba(255, 255, 255, 0.5);
     --color-title: #878787;
     --color-tooltip: #000000;
     --color-title-a-hover: white;
     --color-sep: #dadada33;
     --color-a-visited: #dadada;
-    --color-rgba: 0, 0, 0;
     --color-rgba-alpha: 0.8;
-    /* --url-logo: url(../images/logo-dark.png); */
     --url-logo: url(../images/logo-dark.png);
     --color-version: #8787878a;
     --color-online: rgba(0, 255, 0, 0.5);
-    --color-offline: rgba(255, 0, 0, 0.5);
 }
 
 * {
@@ -74,7 +79,7 @@ title {
 
 .half-hidden,
 .half-hidden * {
-    color: gray;
+    color: var(--color-text-half-hidden);
 }
 
 input,
@@ -136,8 +141,7 @@ button {
     background-position: left;
 }
 
-.modal-header 
-#version {
+.modal-header #version {
     text-align: right;
     align-items: end;
     font-size: 12px;
@@ -250,8 +254,7 @@ a:hover {
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 255, 213, 0.7) rgba(0, 0, 0, 0.2);
-    /* scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2) */
+    scrollbar-color: var(--scrollbar-color);
 }
 
 *::-webkit-scrollbar {
