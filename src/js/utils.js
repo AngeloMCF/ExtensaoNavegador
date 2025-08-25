@@ -13,9 +13,7 @@ catch (e) {
 }
 
 const btn = document.getElementById('btnSw');
-const logo = document.getElementById('logo-img');
-var bbtn = document.getElementById("btnSw").addEventListener("click", SwitchTheme);
-
+document.getElementById("btnSw").addEventListener("click", SwitchTheme);
 
 if (!localStorage.getItem('version')) {
     localStorage.setItem('version', version);
@@ -40,7 +38,7 @@ function LimpalocalStorage() {
 function switchMonth() {
     const date = new Date();
     var updateHtml = true;
-    const bodyElement = document.body;
+    var bodyElement = document.body;
     const headElement = document.head;
     const linkElement = document.createElement('link');
     linkElement.rel = 'stylesheet';
@@ -52,19 +50,21 @@ function switchMonth() {
             // reveillon
             if ((date.getDate() >= 27 && date.getMonth() == 11) || (date.getDate() <= 7 && date.getMonth() == 0)) {
                 linkElement.href = '../css/style-reveillon.css';
-                bodyElement.setAttribute('id', 'reveillon');
+                bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+                bodyElement.setAttribute('class', localTheme);
                 break;
             }
-            linkElement.href = '../css/style-natal.css';
-            bodyElement.setAttribute('id', 'natal');
+            linkElement.href = '../css/style-christmas.css';
+            bodyElement.setAttribute('id', 'christmas');
+            bodyElement.setAttribute('class', localTheme);
             break;
         case 9: // Outubro
             linkElement.href = '../css/style-halloween.css';
-            bodyElement.setAttribute('id', 'halloween');
+            bodyElement.setAttribute('id', 'halloween-' + localTheme);
             break;
         case 3: // Abril
-            linkElement.href = '../css/style-pascoa.css';
-            bodyElement.setAttribute('id', 'pascoa');
+            linkElement.href = '../css/style-easter.css';
+            bodyElement.setAttribute('id', 'easter-' + localTheme);
             break;
         default:
             updateHtml = false
@@ -76,12 +76,27 @@ function switchMonth() {
     }
 }
 
+/** @deprecated use a loadTheme no lugar */
 function forceSwitchTheme() {
     switchMonth();
     SwitchTheme(); // default é dark
     SwitchTheme(); // RTA para corrigir bug de tema
 }
 
+function capitalizarPrimeiraLetra(str) {
+    if (!str)
+        return "";
+
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function loadTheme() {
+    console.log('tema carregado')
+    console.log(localTheme)
+    btn.innerHTML = capitalizarPrimeiraLetra(localTheme)
+    switchMonth();
+    console.log('tema switchMonth')
+}
 
 /**
  * Altera o tema entre LIGHT e DARK
@@ -118,23 +133,20 @@ function SwitchTheme() {
         theme = 'light'
         themedark.id = theme
         btn.innerHTML = 'Light'
-        // logo.src = imagens.logo_light
-
     };
 
     if (themelight) {
         theme = 'dark'
         themelight.id = theme
         btn.innerHTML = 'Dark'
-        // logo.src = imagens.logo_dark
-
     };
 
     localStorage.setItem('color-mode', theme);
-    localStorage.getItem('color-mode');
+    localTheme = localStorage.getItem('color-mode');
+    switchMonth()
 };
 
-if (localTheme == 'light') {
+if (localTheme === 'light') {
     SwitchTheme();
 }
 

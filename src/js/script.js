@@ -275,13 +275,6 @@ function initHome() {
 
     validarConexao()
 
-    try {
-        forceSwitchTheme()
-    }
-    catch (e) {
-        console.log('forceSwitchTheme falhou');
-        console.log(e);
-    }
 
     try {
         btnHome.addEventListener('click', switchPage);
@@ -294,14 +287,20 @@ function initHome() {
 
 };
 
+
+try {
+    window.onload = loadTheme()
+}
+catch (e) {
+    console.error('loadTheme falhou', e);
+}
+
 switch (window.location.pathname) {
     case '/src/html/popup.html':
         window.onload = initHome()
         break;
     case '/src/html/pullrequest.html':
         window.onload = validarConexao()
-        break;
-
     default:
         break;
 }
