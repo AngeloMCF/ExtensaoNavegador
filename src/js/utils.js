@@ -91,11 +91,8 @@ function capitalizarPrimeiraLetra(str) {
 }
 
 function loadTheme() {
-    console.log('tema carregado')
-    console.log(localTheme)
     btn.innerHTML = capitalizarPrimeiraLetra(localTheme)
     switchMonth();
-    console.log('tema switchMonth')
 }
 
 /**
