@@ -1,4 +1,4 @@
-# (OPICIONAL) ambiente virtual
+# (opcional) ambiente virtual
 # shell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # python -m venv venv
