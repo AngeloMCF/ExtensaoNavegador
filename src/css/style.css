@@ -2,7 +2,7 @@
     --color-rgba: 0, 0, 0;
     --color-offline: rgba(255, 0, 0, 0.5);
     /* --scrollbar-color:rgba(0, 255, 213, 0.7) rgba(0, 0, 0, 0.2); */
-    --scrollbar-color:rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2)
+    --scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2)
 }
 
 #light {
@@ -326,4 +326,31 @@ a:hover {
     visibility: visible;
     transform: translateX(-50%) translateY(0);
     transition-delay: 0s;
+}
+
+.pointer {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* transform: translate(-50%, -50%); */
+    transition: .1s;
+    pointer-events: none;
+    animation: ghost 2.5s ease infinite;
+}
+
+@keyframes ghost {
+
+    0%,
+    100% {
+        transform:scale(1);
+        opacity: 0;
+    }
+    
+    50% {
+        transform:scale(2);
+        opacity: 1;
+    }
 }

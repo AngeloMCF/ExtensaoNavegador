@@ -304,3 +304,28 @@ switch (window.location.pathname) {
     default:
         break;
 }
+
+
+if (document.querySelector('.pointer')) {
+
+    try {
+        document.addEventListener('mousemove', (event) => {
+            const cursorElement = document.querySelector('.pointer');
+            const x = event.clientX;
+            const y = event.clientY;
+
+            // const screenWidth = window.innerWidth;
+            // const screenHeight = window.innerHeight;
+
+            cursorElement.style.left = 20 + x + 'px';
+            cursorElement.style.top = 10 + y + 'px';
+
+            // if (x >= 0 && x <= screenWidth && y >= 0 && y <= screenHeight) {
+            //     console.log('O mouse está dentro da tela');
+            // } else {
+            //     console.log('O mouse está fora da tela');
+            // }
+        });
+    }
+    catch { }
+}

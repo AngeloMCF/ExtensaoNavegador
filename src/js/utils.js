@@ -44,7 +44,9 @@ function switchMonth() {
     linkElement.rel = 'stylesheet';
     linkElement.type = 'text/css';
 
-    const sep = bodyElement.getElementsByClassName('sep')[0]
+    const sep = bodyElement.getElementsByClassName('sep')[0];
+    const pointer = document.createElement('div');
+    pointer.classList.add("pointer");
 
 
     switch (date.getMonth() /*0-11*/) {
@@ -78,6 +80,9 @@ function switchMonth() {
         case 9: // Outubro
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
+
+            pointer.innerHTML = "👻";
+            sep.after(pointer)
 
             // sep.classList.add('pumpkins');
 
