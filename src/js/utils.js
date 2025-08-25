@@ -44,6 +44,9 @@ function switchMonth() {
     linkElement.rel = 'stylesheet';
     linkElement.type = 'text/css';
 
+    const sep = bodyElement.getElementsByClassName('sep')[0]
+
+
     switch (date.getMonth() /*0-11*/) {
         case 11: // Dezembro
             // reveillon
@@ -58,7 +61,6 @@ function switchMonth() {
             bodyElement.setAttribute('id', 'christmas');
             bodyElement.setAttribute('class', localTheme);
 
-            const sep = bodyElement.getElementsByClassName('sep')[0]
             if (!bodyElement.getElementsByClassName('snowflake')[0]) {
                 for (var i = 0; i < 6; i++) {
                     const snowflake = document.createElement('div');
@@ -76,6 +78,9 @@ function switchMonth() {
         case 9: // Outubro
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
+
+            // sep.classList.add('pumpkins');
+
             break;
         case 3: // Abril
             linkElement.href = '../css/style-easter.css';
