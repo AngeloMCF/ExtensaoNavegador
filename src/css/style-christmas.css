@@ -2,16 +2,16 @@
 /* 🎄 NATAL LIGHT */
 /* ------------------ */
 #christmas.light {
-    --color-backgruond: #fdfdfd; /* fundo claro */
-    --color-backgruond-button: #eaf6ea; /* verde pastel suave */
+    --color-backgruond: #fdfdfd;
+    --color-backgruond-button: #eaf6ea;
     --color-backgruond-tooltip: #ffffff;
     --color-text: #2b2b2b;
-    --color-title: #b30000; /* vermelho elegante */
+    --color-title: #b30000;
     --color-tooltip: #2b2b2b;
-    --color-title-a-hover: #006b2e; /* verde pinho */
+    --color-title-a-hover: #006b2e;
     --color-sep: #dcdcdc;
     --color-a-visited: #8a0000;
-    --color-rgba: 179, 0, 0; /* vermelho */
+    --color-rgba: 179, 0, 0;
     --color-rgba-alpha: 0.12;
     --url-logo: url(../images/logo-christmas.png);
     --color-version: #b3000080;
@@ -23,16 +23,16 @@
 /* 🎄 NATAL DARK */
 /* ------------------ */
 #christmas.dark {
-    --color-backgruond: #0f1a0f; /* verde musgo escuro */
-    --color-backgruond-button: #1e2e1e; /* verde mais claro */
+    --color-backgruond: #0f1a0f;
+    --color-backgruond-button: #1e2e1e;
     --color-backgruond-tooltip: #1a1a1a;
     --color-text: #f2f2f2;
-    --color-title: #ff4d4d; /* vermelho vivo */
+    --color-title: #ff4d4d;
     --color-tooltip: #f2f2f2;
-    --color-title-a-hover: #66cc66; /* verde festivo */
+    --color-title-a-hover: #66cc66;
     --color-sep: #334433;
     --color-a-visited: #ff8080;
-    --color-rgba: 255, 77, 77; /* vermelho */
+    --color-rgba: 255, 77, 77;
     --color-rgba-alpha: 0.15;
     --url-logo: url(../images/logo-christmas.png);
     --color-version: #ff4d4d80;
@@ -45,7 +45,7 @@
 /* ------------------ */
 .snowflake {
     position: fixed;
-    top: -10px;
+    top: -25px;
     color: white;
     font-size: 1.2rem;
     user-select: none;
@@ -55,21 +55,54 @@
 }
 
 @keyframes snowfall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.7;
+    }
 }
 
 /* Gerar flocos múltiplos */
-.snowflake:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.snowflake:nth-child(2) { left: 25%; animation-duration: 10s; animation-delay: 2s; }
-.snowflake:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 1s; }
-.snowflake:nth-child(4) { left: 55%; animation-duration: 9s; animation-delay: 3s; }
-.snowflake:nth-child(5) { left: 70%; animation-duration: 11s; animation-delay: 4s; }
-.snowflake:nth-child(6) { left: 85%; animation-duration: 8s; animation-delay: 5s; }
+.snowflake:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+}
 
-/* ------------------ */
-/* 🌲 Árvores natalinas discretas no rodapé */
-/* ------------------ */
+.snowflake:nth-child(2) {
+    left: 25%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+.snowflake:nth-child(3) {
+    left: 40%;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
+
+.snowflake:nth-child(4) {
+    left: 55%;
+    animation-duration: 9s;
+    animation-delay: 3s;
+}
+
+.snowflake:nth-child(5) {
+    left: 70%;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+.snowflake:nth-child(6) {
+    left: 85%;
+    animation-duration: 8s;
+    animation-delay: 5s;
+}
+
 #christmas::after {
     content: "🎄 🎄 🎄 🎄 🎄";
     position: absolute;

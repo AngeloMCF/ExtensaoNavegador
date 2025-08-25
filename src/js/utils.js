@@ -46,17 +46,32 @@ function switchMonth() {
 
     switch (date.getMonth() /*0-11*/) {
         case 11: // Dezembro
-        case 0: // Janeiro
             // reveillon
-            if ((date.getDate() >= 27 && date.getMonth() == 11) || (date.getDate() <= 7 && date.getMonth() == 0)) {
+            if (date.getDate() >= 27) {
                 linkElement.href = '../css/style-reveillon.css';
                 bodyElement.setAttribute('id', 'reveillon-' + localTheme);
                 bodyElement.setAttribute('class', localTheme);
                 break;
             }
+
             linkElement.href = '../css/style-christmas.css';
             bodyElement.setAttribute('id', 'christmas');
             bodyElement.setAttribute('class', localTheme);
+
+            const sep = bodyElement.getElementsByClassName('sep')[0]
+            if (!bodyElement.getElementsByClassName('snowflake')[0]) {
+                for (var i = 0; i < 6; i++) {
+                    const snowflake = document.createElement('div');
+                    snowflake.setAttribute('class', 'snowflake');
+                    snowflake.innerHTML = '❄';
+                    if (localTheme === 'light') {
+                        snowflake.style = "color: var(--color-text)";
+
+                    }
+                    sep.append(snowflake);
+                };
+            }
+
             break;
         case 9: // Outubro
             linkElement.href = '../css/style-halloween.css';
@@ -66,6 +81,14 @@ function switchMonth() {
             linkElement.href = '../css/style-easter.css';
             bodyElement.setAttribute('id', 'easter-' + localTheme);
             break;
+        case 0: // Janeiro
+            // reveillon
+            if (date.getDate() <= 7) {
+                linkElement.href = '../css/style-reveillon.css';
+                bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+                bodyElement.setAttribute('class', localTheme);
+                break;
+            }
         default:
             updateHtml = false
             break;
