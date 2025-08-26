@@ -80,9 +80,12 @@ function switchMonth() {
         case 9: // Outubro
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
-
-            pointer.innerHTML = "👻";
-            sep.after(pointer)
+            
+            console.log(document.getElementsByClassName('pointer')[0], 'hi')
+            if (!document.getElementsByClassName('pointer')[0]){
+                pointer.innerHTML = "👻";
+                sep.after(pointer)
+            }
 
             // sep.classList.add('pumpkins');
 
