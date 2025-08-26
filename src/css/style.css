@@ -2,7 +2,8 @@
     --color-rgba: 0, 0, 0;
     --color-offline: rgba(255, 0, 0, 0.5);
     /* --scrollbar-color:rgba(0, 255, 213, 0.7) rgba(0, 0, 0, 0.2); */
-    --scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2)
+    --scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2);
+    --url-copy-icon:('../icons/copy.png')
 }
 
 #light {
@@ -17,7 +18,7 @@
     --color-sep: #737373;
     --color-a-visited: #000;
     --color-rgba-alpha: 0.1;
-    --url-logo: url(../images/logo-light.png);
+    --url-logo: url('../images/logo-light.png');
     --color-version: #696767b6;
     --color-online: rgba(0, 105, 0, 0.5);
 }
@@ -34,7 +35,7 @@
     --color-sep: #dadada33;
     --color-a-visited: #dadada;
     --color-rgba-alpha: 0.8;
-    --url-logo: url(../images/logo-dark.png);
+    --url-logo: url('../images/logo-dark.png');
     --color-version: #8787878a;
     --color-online: rgba(0, 255, 0, 0.5);
 }
@@ -353,4 +354,9 @@ a:hover {
         transform:scale(2);
         opacity: 1;
     }
+}
+
+.invert,
+#dark .copy-icon{
+    filter: invert(100%);
 }

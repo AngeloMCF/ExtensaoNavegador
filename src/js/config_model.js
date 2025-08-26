@@ -1,13 +1,22 @@
 
 const imagens = {
-    logo_light: '../images/logo-placeholder-light.png',
-    logo_dark: '../images/logo-placeholder-dark.png',
+    logo_light: '../images/logo-light.png',
+    logo_dark: '../images/logo-dark.png',
 
     // usado para setar logo por mes comemorativo ou evento
-    logo_natal: '../images/logo-placeholder-natal.png',
-    logo_halloween: '../images/logo-placeholder-halloween.png',
-    logo_pascoa: '../images/logo-placeholder-pascoa.png',
-    logo_reveillon: '../images/logo-placeholder-reveillon.png',
+    // (opcional) logo_natal_light ou logo_natal_dark se passar este caminho busca uma imagem específica
+    logo_natal: '../images/logo-natal.png',
+    // logo_natal_light: '../images/logo-natal.png',
+    // logo_natal_dark: '../images/logo-natal.png',
+    logo_halloween: '../images/logo-halloween.png',
+    // logo_halloween_light: '../images/logo-halloween.png',
+    // logo_halloween_dark: '../images/logo-halloween.png',
+    logo_pascoa: '../images/logo-easter.png',
+    // logo_pascoa_light: '../images/logo-easter.png',
+    // logo_pascoa_dark: '../images/logo-easter.png',
+    logo_reveillon: '../images/logo-reveillon.png',
+    // logo_reveillon_light: '../images/logo-reveillon.png',
+    // logo_reveillon_dark: '../images/logo-reveillon.png',
 }
 
 // Deixar como "#" caso não tenha link e deixar mensagem vazia

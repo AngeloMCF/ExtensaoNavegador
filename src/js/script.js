@@ -181,12 +181,14 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                         button.textContent = lista[i].nome;
 
                         const img = document.createElement('img');
-                        img.src = localStorage.getItem('color-mode') === 'dark' ? icons.copy_dark : icons.copy_light
+                        
                         img.alt = 'icone';
                         img.width = 12;
                         img.height = 12;
                         img.setAttribute('style', 'vertical-align: middle; margin-right: 8px; margin-left: 4px;');
-                        img.setAttribute('class', 'tooltip');
+                        img.setAttribute('class', 'tooltip copy-icon');
+                        img.setAttribute('src', icons.copy_dark);
+                        // img.setAttribute('src', icons.copy_light);
 
                         button.append(img);
                         conteudo.append(button)
