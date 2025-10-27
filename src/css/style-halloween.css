@@ -72,7 +72,7 @@ body#halloween-dark {
 #halloween-light a:hover,
 #halloween-dark a:hover {
     color: var(--color-title-a-hover);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #halloween-light .sep,
