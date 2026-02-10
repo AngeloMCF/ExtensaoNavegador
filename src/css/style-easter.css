@@ -77,7 +77,6 @@ body#easter-dark {
 #easter-light a:hover,
 #easter-dark a:hover {
     color: var(--color-title-a-hover);
-    text-decoration: underline;
 }
 
 #easter-light .sep,

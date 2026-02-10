@@ -93,6 +93,13 @@ function switchMonth() {
             linkElement.href = '../css/style-easter.css';
             bodyElement.setAttribute('id', 'easter-' + localTheme);
             break;
+        case 1: // Fevereiro
+            linkElement.href = '../css/style-carnaval.css';
+            bodyElement.setAttribute('id', 'carnaval');
+            bodyElement.setAttribute('class', localTheme);
+            startConfetti()
+            // bodyElement.setAttribute('id', 'carnaval-' + localTheme);
+            break;
         case 0: // Janeiro
             // reveillon
             if (date.getDate() <= 7) {
@@ -253,3 +260,47 @@ document.addEventListener('DOMContentLoaded', function () {
     linkSuporte();
     // });
 });
+
+function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    /*TO DO: feat mudar para config generica */
+    const colors = [
+        "#ff0",
+        "#f0f",
+        "#0ff",
+        "#0f0",
+        "#f00",
+        "#00f"];
+
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+
+    const duration = (Math.random() * 3 )+ 2;
+    confetti.style.animationDuration = duration + "s";
+
+    const size = Math.random() * 3 + 1;
+    confetti.style.width = size + "px";
+    confetti.style.height = size + "px";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        confetti.remove();
+    }, duration * 2000);
+}
+
+
+function startConfetti() {
+    np = parseInt(localStorage.getItem('numeroParticulas')); 
+
+    for (let i = 0; i < np; i++) {
+        createConfetti();
+    }
+
+    setTimeout(() => {
+        startConfetti();
+    }, 500);
+}

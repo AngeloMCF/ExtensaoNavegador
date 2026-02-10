@@ -3,7 +3,7 @@
     --color-offline: rgba(255, 0, 0, 0.5);
     /* --scrollbar-color:rgba(0, 255, 213, 0.7) rgba(0, 0, 0, 0.2); */
     --scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2);
-    --url-copy-icon:('../icons/copy.png')
+    --url-copy-icon: ('../icons/copy.png')
 }
 
 #light {
@@ -346,17 +346,38 @@ a:hover {
 
     0%,
     100% {
-        transform:scale(1);
+        transform: scale(1);
         opacity: 0;
     }
-    
+
     50% {
-        transform:scale(1.5);
+        transform: scale(1.5);
         opacity: 1;
     }
 }
 
 .invert,
-#dark .copy-icon{
+#dark .copy-icon {
     filter: invert(100%);
 }
+
+/* confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -5px;
+    opacity: 0.8;
+    animation: fall ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* TO DO: fix translateY, 
+    deve vir do js o tamaho maximo ou calcular com css pelo scroll*/
+@keyframes fall {
+    to {
+        transform: translateY(180vh) rotate(360deg);
+    }
+}
+
+/* fim confetti */

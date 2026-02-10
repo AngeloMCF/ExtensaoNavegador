@@ -1,0 +1,65 @@
+#eletronic.dark {
+    --color-backgruond: #0b0d0f; 
+    --color-backgruond-button: #12161a;
+    --color-backgruond-tooltip: #1a1f24;
+
+    --color-text: #e6f7f6; 
+    --color-text-half-hidden: rgba(230, 247, 246, 0.55);
+
+    --color-title: #1fffd7; 
+    --color-tooltip: #ffffff;
+
+    --color-title-a-hover: #d4af37; 
+    --color-a-visited: #1fffd7;
+
+    --color-sep: #1f2a30;
+
+    
+    --color-rgba: 31, 255, 215;
+    --color-rgba-alpha: 0.22;
+
+    --color-version: rgba(31, 255, 215, 0.6);
+
+    --color-online: rgba(31, 255, 215, 0.8);
+    --color-offline: rgba(255, 80, 80, 0.7);
+}
+
+body#eletronic.dark {
+    background: radial-gradient(
+        circle at top,
+        #0f1c1e 0%,
+        #0b0d0f 55%,
+        #050607 100%
+    );
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#eletronic.dark h1,
+#eletronic.dark strong {
+    text-shadow:
+        0 0 6px rgba(31, 255, 215, 0.45),
+        0 0 14px rgba(31, 255, 215, 0.25),
+        0 0 22px rgba(212, 175, 55, 0.15);
+}
+
+#eletronic.dark button:hover,
+#eletronic.dark .grid-item:hover {
+    background-color: rgba(var(--color-rgba), 0.12);
+    box-shadow:
+        0 0 12px rgba(var(--color-rgba), 0.45),
+        0 0 22px rgba(212, 175, 55, 0.25);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+#eletronic.dark a:hover {
+    color: var(--color-title-a-hover);
+}
+
+#eletronic.dark button,
+#eletronic.dark .grid-container button,
+#eletronic.dark .grid-item {
+    background-color: transparent;
+}
