@@ -23,6 +23,13 @@ const imagens = {
 const SuporteUrl = 'http://google.com';
 const SuporteMensagem = 'Clique para acessar o portal do suporte';
 
+// Alterar caso o navegador fique pesado
+let numeroParticulas = 30;
+
+localStorage.setItem('numeroParticulas', numeroParticulas);
+const easterDate = new Date('2026-04-05');
+const carnavalDays = 7;
+const habilitaCarnaval = false;
 
 // Definir aqui os blocos que irão aparecer na extensão
 const NomesTela = [
@@ -74,14 +81,14 @@ const NomesTela = [
         chave: "TOOLS",
         page: 'home'
     },
-    , {
-        id: "#textosCopiar",
-        h1: "Textos para copiar",
-        lista: textosCopiar,
-        chave_url: "URL",
-        chave: "textosCopiar",
-        page: 'home'
-    },
+    // , {
+    //     id: "#textosCopiar",
+    //     h1: "Textos para copiar",
+    //     lista: textosCopiar,
+    //     chave_url: "URL",
+    //     chave: "textosCopiar",
+    //     page: 'home'
+    // },
     // Não implementado, colocar direto na pagina de pull request
     // {
     //     id :"#pr",

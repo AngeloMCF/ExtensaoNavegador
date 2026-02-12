@@ -1,7 +1,7 @@
-#carnaval.dark,
+/* #carnaval.dark,
 #carnaval.light {
     --url-logo: url(../images/logo-carnaval.png);
-}
+} */
 
 body#carnaval.dark,
 body#carnaval.light {
@@ -11,10 +11,8 @@ body#carnaval.light {
 }
 
 #carnaval.dark button:hover,
-#carnaval.dark .grid-item:hover,
 #carnaval.light button:hover,
 #carnaval.light .grid-item:hover {
-    background-color: rgba(var(--color-rgba), 0.12);
     border-radius: 10px;
     transition: all 0.25s ease;
 }
@@ -32,13 +30,11 @@ body#carnaval.light {
 }
 
 #carnaval.dark {
-    --color-backgruond: linear-gradient(
-        135deg,
-        #020304 0%,
-        #070b0f 35%,
-        #0c151c 65%,
-        #050607 100%
-    );
+    --color-backgruond: linear-gradient(135deg,
+            #020304 0%,
+            #070b0f 35%,
+            #0c151c 65%,
+            #050607 100%);
 
     --color-backgruond-button: rgba(18, 22, 26, 0.85);
     --color-backgruond-tooltip: #0f1418;
@@ -49,7 +45,7 @@ body#carnaval.light {
     --color-title: #7df9ff;
     --color-tooltip: #ffffff;
 
-    --color-title-a-hover: #9befff;
+    --color-title-a-hover: rgba(155, 239, 255, 0.7);
     --color-a-visited: #7df9ff;
 
     --color-sep: rgba(125, 249, 255, 0.15);
@@ -63,15 +59,6 @@ body#carnaval.light {
     --color-offline: rgba(255, 80, 80, 0.7);
 }
 
-/* body#carnaval.dark {
-    background: radial-gradient(
-        circle at top,
-        #0f1c1e 0%,
-        #0b0d0f 55%,
-        #050607 100%
-    );
-} */
-
 body#carnaval.dark {
     background: var(--color-backgruond);
 }
@@ -84,19 +71,16 @@ body#carnaval.dark {
         0 0 22px rgba(212, 175, 55, 0.15);
 }
 
-/* #carnaval.dark button:hover,
-#carnaval.dark .grid-item:hover {
-    box-shadow:
-        0 0 12px rgba(var(--color-rgba), 0.45),
-        0 0 22px rgba(212, 175, 55, 0.25);
-} */
-
 #carnaval.light {
-    --color-backgruond: #f6f0ff;
+    --color-backgruond: linear-gradient(135deg,
+            #6a00ff 0%,
+            #8f3dff 55%,
+            #00ffab 100%);
     --color-backgruond-button: #ffffff;
     --color-backgruond-tooltip: #ffffff;
-    --color-text: #3a1b5a;
-    --color-text-half-hidden: rgba(58, 27, 90, 0.55);
+    /* --color-text: #3a1b5a; */
+    --color-text: #ffcc00;
+    --color-text-half-hidden: rgba(255, 204, 0, 0.55);
     --color-title: #ffcc00;
     --color-tooltip: #3a1b5a;
     --color-title-a-hover: #ff4fc3;
@@ -110,13 +94,7 @@ body#carnaval.dark {
 }
 
 body#carnaval.light {
-    background: linear-gradient(
-        135deg,
-        #6a00ff 0%,
-        #8f3dff 25%,
-        #00e5ff 55%,
-        #ffe066 100%
-    );
+    background: var(--color-backgruond)
 }
 
 #carnaval.light h1,
@@ -132,13 +110,5 @@ body#carnaval.light {
 #carnaval.light p,
 #carnaval.light div,
 #carnaval.light a {
-    color: #ff8c00;
+    color: var(--color-text);
 }
-/* 
-#carnaval.light button:hover,
-#carnaval.light .grid-item:hover {
-    box-shadow:
-        0 0 12px rgba(106, 0, 255, 0.45),
-        0 0 22px rgba(255, 204, 0, 0.35),
-        0 0 10px rgba(255, 140, 0, 0.35);
-} */
