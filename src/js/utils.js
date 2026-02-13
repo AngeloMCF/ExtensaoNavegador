@@ -12,7 +12,7 @@ carnvalStartDate.setDate(carnvalStartDate.getDate() - carnavalDays);
 carnvalStartDate.setHours(0);
 
 try {
-    const version = localStorage.getItem('version') ?? chrome.runtime.getManifest().version;
+    const version = chrome.runtime.getManifest().version ?? localStorage.getItem('version');
     const versionElement = document.getElementById('version');
     versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? `v${version}` : 'v0.0.0';
 
