@@ -5,27 +5,29 @@
     <title>Pull Request</title>
     <meta charset="UTF-8">
     <link rel="icon" href="../images/favicon-pull.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
 <!-- <body id="light"> -->
 <body>
-    <div class="modal-header">
+    <div class="modal-header container">
         <div id="logo">
             <h1 class="logo">
-                <a id="link-suporte" class="logo-icon" target="_blank">
-                </a>
+                <a id="link-suporte" class="logo-icon" target="_blank"></a>
             </h1>
         </div>
         <div class="theme"> <button id="btnSw" title="Tema"></button> </div>
-        <div id="version" class="connected"><span >v0.0.0</span></div>
+        <div class="container container-2-vertical">
+            <div class="config"> <button id="config" title="Configurações"><a class="config-icon" href="./config.html"></a></button> </div>
+            <div id="version" class="connected"><span >v0.0.0</span></div>
+        </div>
     </div>
-
     <div class="sep"></div>
+
     <div>
         <div class="grid-container-2">
             <button id="m-home" class="inactive"><a href="./popup.html">Home</a></button>
-            <!-- <button id="m-wiki" class="inactive">Wiki</button> -->
             <button id="m-pullrequest" class="active">Pull Request</button>
         </div>
 

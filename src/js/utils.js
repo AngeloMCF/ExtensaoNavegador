@@ -11,11 +11,17 @@ let carnvalStartDate = new Date(carnavalDate);
 carnvalStartDate.setDate(carnvalStartDate.getDate() - carnavalDays);
 carnvalStartDate.setHours(0);
 
-
 try {
-    const version = chrome.runtime.getManifest().version;
-    const versionElement = document.getElementById('version')
+    const version = localStorage.getItem('version') ?? chrome.runtime.getManifest().version;
+    const versionElement = document.getElementById('version');
     versionElement.textContent = typeof (version) == typeof ('v0.0.0') ? `v${version}` : 'v0.0.0';
+
+    if (!localStorage.getItem('version')) {
+        localStorage.setItem('version', version);
+    }
+    else if (localStorage.getItem('version') != version) {
+        localStorage.setItem('version', version);
+    };
 }
 catch (e) {
     console.error('Erro ao obter a versão da extensão:', e);
@@ -23,14 +29,6 @@ catch (e) {
 
 const btn = document.getElementById('btnSw');
 document.getElementById("btnSw").addEventListener("click", SwitchTheme);
-
-if (!localStorage.getItem('version')) {
-    localStorage.setItem('version', version);
-}
-else if (localStorage.getItem('version') != version) {
-    localStorage.setItem('version', version);
-    LimpalocalStorage();
-}
 
 let localTheme = localStorage.getItem('color-mode');
 
@@ -40,9 +38,19 @@ if (!localTheme) {
 };
 
 function LimpalocalStorage() {
-    localStorage.clear()
-    console.log('Limpa localStorage')
+
+    if (debug) {
+        console.table(localStorage);
+        console.log(localStorage.getItem('version'));
+    }
+
+    localStorage.clear();
+
+    if (debug) { console.log('Limpa localStorage'); };
+
+    window.location.reload();
 }
+
 
 function switchMonth() {
     let date = new Date();
@@ -62,65 +70,75 @@ function switchMonth() {
     switch (date.getMonth() /*0-11*/) {
         case 11: // Dezembro
             // reveillon
-            if (date.getDate() >= 27) {
-                linkElement.href = '../css/style-reveillon.css';
-                bodyElement.setAttribute('id', 'reveillon-' + localTheme);
-                bodyElement.setAttribute('class', localTheme);
-                break;
-            }
-
-            linkElement.href = '../css/style-christmas.css';
-            bodyElement.setAttribute('id', 'christmas');
-            bodyElement.setAttribute('class', localTheme);
-
-            if (!bodyElement.getElementsByClassName('snowflake')[0]) {
-                for (var i = 0; i < 6; i++) {
-                    const snowflake = document.createElement('div');
-                    snowflake.setAttribute('class', 'snowflake');
-                    snowflake.innerHTML = '❄';
-                    if (localTheme === 'light') {
-                        snowflake.style = "color: var(--color-text)";
-
-                    }
-                    sep.append(snowflake);
+            if (Boolean(parseInt(localStorage.getItem('temeReveillon')))) {
+                if (date.getDate() >= 27) {
+                    linkElement.href = '../css/style-reveillon.css';
+                    bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+                    bodyElement.setAttribute('class', localTheme);
+                    break;
                 };
-            }
+            };
 
+            if (Boolean(parseInt(localStorage.getItem('temeChristmas')))) {
+
+                linkElement.href = '../css/style-christmas.css';
+                bodyElement.setAttribute('id', 'christmas');
+                bodyElement.setAttribute('class', localTheme);
+
+                if (!bodyElement.getElementsByClassName('snowflake')[0]) {
+                    for (var i = 0; i < 6; i++) {
+                        const snowflake = document.createElement('div');
+                        snowflake.setAttribute('class', 'snowflake');
+                        snowflake.innerHTML = '❄';
+                        if (localTheme === 'light') {
+                            snowflake.style = "color: var(--color-text)";
+
+                        };
+                        sep.append(snowflake);
+                    };
+                };
+            };
             break;
         case 9: // Outubro
-            linkElement.href = '../css/style-halloween.css';
-            bodyElement.setAttribute('id', 'halloween-' + localTheme);
+            if (Boolean(parseInt(localStorage.getItem('temeHalloween')))) {
+                linkElement.href = '../css/style-halloween.css';
+                bodyElement.setAttribute('id', 'halloween-' + localTheme);
 
-            if (!document.getElementsByClassName('pointer')[0]) {
-                pointer.innerHTML = "👻";
-                sep.after(pointer)
-            }
+                if (!document.getElementsByClassName('pointer')[0]) {
+                    pointer.innerHTML = "👻";
+                    sep.after(pointer);
+                };
 
-            // sep.classList.add('pumpkins');
+                // sep.classList.add('pumpkins');
+            };
 
             break;
         case 3: // Abril
-            linkElement.href = '../css/style-easter.css';
-            bodyElement.setAttribute('id', 'easter-' + localTheme);
+            if (Boolean(parseInt(localStorage.getItem('temePascoa')))) {
+                linkElement.href = '../css/style-easter.css';
+                bodyElement.setAttribute('id', 'easter-' + localTheme);
+            };
             break;
-        // case 1: // Fevereiro
-        //     break;
         case 0: // Janeiro
             // reveillon
-            if (date.getDate() <= 7) {
+            if (Boolean(parseInt(localStorage.getItem('temeReveillon')))) {
+
+                // if (date.getDate() <= 7) {
                 linkElement.href = '../css/style-reveillon.css';
                 bodyElement.setAttribute('id', 'reveillon-' + localTheme);
                 bodyElement.setAttribute('class', localTheme);
+                // }
                 break;
             }
+            break;
         default:
-            updateHtml = false
+            updateHtml = false;
             break;
     }
 
     // TODO: refatorar
     if (
-        habilitaCarnaval && !updateHtml
+        Boolean(parseInt(localStorage.getItem('temeCarnaval'))) && !updateHtml
         && date.toISOString().split('T')[0] >= carnvalStartDate.toISOString().split('T')[0]
         && date.toISOString().split('T')[0] <= carnavalDate.toISOString().split('T')[0]
     ) {
@@ -128,33 +146,28 @@ function switchMonth() {
         bodyElement.setAttribute('id', 'carnaval');
         bodyElement.setAttribute('class', localTheme);
 
-        startConfetti()
-        updateHtml = true
-    }
+        startConfetti();
+        updateHtml = true;
+    };
 
     if (updateHtml) {
-        headElement.append(linkElement)
-    }
-}
+        headElement.append(linkElement);
+    };
+};
 
-/** @deprecated use a loadTheme no lugar */
-function forceSwitchTheme() {
-    switchMonth();
-    SwitchTheme(); // default é dark
-    SwitchTheme(); // RTA para corrigir bug de tema
-}
 
 function capitalizarPrimeiraLetra(str) {
-    if (!str)
-        return "";
+    if (!str) return "";
 
     return str.charAt(0).toUpperCase() + str.slice(1);
-}
+};
+
 
 function loadTheme() {
-    btn.innerHTML = capitalizarPrimeiraLetra(localTheme)
+    btn.innerHTML = capitalizarPrimeiraLetra(localTheme);
     switchMonth();
-}
+};
+
 
 /**
  * Altera o tema entre LIGHT e DARK
@@ -162,7 +175,7 @@ function loadTheme() {
 function SwitchTheme() {
     var themedark = document.getElementById('dark');
     var themelight = document.getElementById('light');
-    var theme
+    var theme;
 
     if (themedark) {
         theme = 'light'
@@ -181,9 +194,11 @@ function SwitchTheme() {
     switchMonth()
 };
 
+
 if (localTheme === 'light') {
     SwitchTheme();
 }
+
 
 function validarConexao() {
     try {
@@ -200,6 +215,7 @@ function Log(dados, values = String('log')) {
         dados, values
     )
 }
+
 
 function linkSuporte() {
 
@@ -233,6 +249,7 @@ function linkSuporte() {
 
 }
 
+
 function copyToClipBoard(idDoElemento) {
 
     const elemento = document.getElementById(idDoElemento);
@@ -248,19 +265,19 @@ function copyToClipBoard(idDoElemento) {
     }
 }
 
+function habilitarConfig() {
+    let doomConfig = document.getElementById('config');
 
-document.addEventListener('DOMContentLoaded', function () {
-    // document.getElementById('link-suporte').addEventListener('click', function(event) {
-    //     event.preventDefault(); 
-    linkSuporte();
-    // });
-});
+    if (doomConfig && !habilitarConfiguracoes) {
+        doomConfig.setAttribute('class', 'hidden')
+    }
+}
 
 function createConfetti() {
     const confetti = document.createElement("div");
     confetti.classList.add("confetti");
 
-    /*TO DO: feat mudar para config generica */
+    /*TODO: feat mudar para config generica */
     const colors = [
         "#ff0",
         "#f0f",
@@ -302,3 +319,12 @@ function startConfetti() {
         }, 500);
     }
 }
+
+
+function initUtil() {
+    linkSuporte();
+    habilitarConfig();
+
+}
+
+window.onload = initUtil()

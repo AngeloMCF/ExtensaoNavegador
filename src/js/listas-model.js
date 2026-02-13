@@ -81,6 +81,7 @@ const Clientes = [
         PROD_URL: "https://www.Epsilon.com",
         // HML_URL: "https://homologacao.Epsilon.com",
         DEV_URL: "https://desenvolvimento.Epsilon.com",
+        tooltip: "Base de homologação em manutenção",
     },
     {
         nome: "Zeta",
@@ -166,10 +167,14 @@ const Wiki = [
 ];
 
 const Pages = [
+    // {
+    //     nome: "Pull requests",
+    //     URL: "./pullrequest.html",
+    //     target: '_self'
+    // },
     {
-        nome: "Pull requests",
-        URL: "./pullrequest.html",
-        target: '_self'
+        nome: "Git Hub",
+        URL: "https://github.com/AngeloMCF/ExtensaoNavegador"
     },
     {
         nome: "Outlook",
@@ -185,7 +190,7 @@ const Pages = [
     }
 ];
 
-// Não implementado, colocar direto na pagina(html) de pull request
+// Não implementado, colocar direto na pagina de pull request
 const pullRequest = [
     {
         nome: 'Banco Exmplo',

@@ -23,13 +23,21 @@ const imagens = {
 const SuporteUrl = 'http://google.com';
 const SuporteMensagem = 'Clique para acessar o portal do suporte';
 
-// Alterar caso o navegador fique pesado
-let numeroParticulas = 30;
+const habilitarConfiguracoes = true; // Não Alterar
+const habilitaNatal = true;
+const habilitaHalloween = true;
+const habilitaPascoa = true;
+const habilitaCarnaval = false;
+const habilitaReveillon = true;
 
-localStorage.setItem('numeroParticulas', numeroParticulas);
+const advancedMode = true;
+
+// Alterar caso o navegador fique pesado
+const numeroParticulas = 30;
+
 const easterDate = new Date('2026-04-05');
 const carnavalDays = 7;
-const habilitaCarnaval = false;
+
 
 // Definir aqui os blocos que irão aparecer na extensão
 const NomesTela = [

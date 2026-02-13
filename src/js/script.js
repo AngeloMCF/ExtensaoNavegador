@@ -181,7 +181,7 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                         button.textContent = lista[i].nome;
 
                         const img = document.createElement('img');
-                        
+
                         img.alt = 'icone';
                         img.width = 12;
                         img.height = 12;
@@ -224,18 +224,6 @@ function switchPage() {
 
     id = btnHome.classList.contains(classActive) ? 'm-wiki' : 'm-home';
 
-    // id = btnHome.classList.contains(classActive) ? 'm-wiki' : 'm-home';
-
-    // ids.forEach(id => {
-    //     if (id === id) {
-    //         document.getElementById(id).classList.remove(classIncative);
-    //         document.getElementById(id).classList.add(classActive);
-    //     } else {
-    //         document.getElementById(id).classList.remove(classActive);
-    //         document.getElementById(id).classList.add(classIncative);
-    //     }
-    // });
-
     switch (id) {
         case 'm-home':
             btnHome.setAttribute('class', classActive);
@@ -256,10 +244,17 @@ function switchPage() {
             break;
     }
 
+    if (!Boolean(parseInt(localStorage.getItem('habilitaPR')))) {
+        if (debug) { console.log(document.getElementById('m-pullrequest')); }
+        document.getElementById('m-pullrequest').setAttribute('class', 'hidden')
+    }
+
 }
 
 
 function initHome() {
+
+    validarConexao();
 
     for (item in NomesTela) {
 
@@ -275,38 +270,110 @@ function initHome() {
 
     };
 
-    validarConexao()
-
-
     try {
         btnHome.addEventListener('click', switchPage);
         btnWiki.addEventListener('click', switchPage);
     }
     catch (e) {
-        console.log('switchPage falhou');
-        console.log(e);
+        console.log(`switchPage falhou: ${e}`);
     }
+
+    if (!Boolean(parseInt(localStorage.getItem('habilitaPR')))) {
+        if (debug) { console.log(document.getElementById('m-pullrequest')); }
+        document.getElementById('m-pullrequest').setAttribute('class', 'hidden')
+    };
+
+    if (!Boolean(parseInt(localStorage.getItem('habilitaTools')))) {
+        if (debug) { console.log(document.getElementById('habilitaTools')); }
+        document.getElementById('tools-header').setAttribute('class', 'hidden')
+        document.getElementById('tools').setAttribute('class', 'hidden')
+    };
 
 };
 
 
-try {
-    window.onload = loadTheme()
+let defaultConfig = {
+    'advancedMode': advancedMode ? 1 : 0,
+    'color-mode': 'dark',
+    'habilitaPR': 0,
+    'habilitaTools': 0,
+    'temeChristmas': habilitaNatal ? 1 : 0,
+    'temeHalloween': habilitaHalloween ? 1 : 0,
+    'temePascoa': habilitaPascoa ? 1 : 0,
+    'temeCarnaval': habilitaCarnaval ? 1 : 0,
+    'temeReveillon': habilitaReveillon ? 1 : 0,
+    'numeroParticulas': numeroParticulas ?? 30
+};
+
+function setDefaultConfig() {
+    if (debug) console.log('setDefaultConfig');
+
+    for (i in defaultConfig) {
+        if (debug) console.log(`defaultConfig: ${i} : ${defaultConfig[i]} `);
+
+        if (localStorage.getItem(i) === null)
+            localStorage.setItem(i, defaultConfig[i])
+
+    };
+
 }
-catch (e) {
-    console.error('loadTheme falhou', e);
-}
+
+
+function init() {
+    if (debug)
+        console.log('init')
+
+    setDefaultConfig();
+    try {
+        window.onload = loadTheme();
+    }
+    catch (e) {
+        console.error('loadTheme falhou', e);
+    }
+};
+
+
+function gravarlocal(element) {
+    localStorage.setItem(element.dataset.name, element.checked ? 1 : 0);
+
+    if (debug) { console.table(localStorage); }
+    switchMonth();
+};
+
+
+function initConfig() {
+    if (debug) { console.table(localStorage); }
+
+    validarConexao();
+
+    document.getElementById('cleanCache').addEventListener('click', LimpalocalStorage)
+
+    for (i in defaultConfig) {
+        if (debug) console.log(`initConfig -> defaultConfig: ${i} : ${defaultConfig[i]} `);
+
+        try {
+            document.getElementById(i).addEventListener('click', function () { gravarlocal(this); });
+            document.getElementById(i).checked = Boolean(parseInt(localStorage.getItem(i)))
+        } catch { }
+
+    }
+};
+
+window.onload = init()
 
 switch (window.location.pathname) {
     case '/src/html/popup.html':
-        window.onload = initHome()
+        window.onload = initHome();
         break;
     case '/src/html/pullrequest.html':
-        window.onload = validarConexao()
+        window.onload = validarConexao();
+        break;
+    case '/src/html/config.html':
+        window.onload = initConfig();
+        break;
     default:
         break;
 }
-
 
 if (document.querySelector('.pointer')) {
 

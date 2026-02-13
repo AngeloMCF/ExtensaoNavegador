@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-br" id="dark">
+
+<head>
+    <title>Configurações</title>
+    <meta charset="UTF-8">
+    <!-- <link rel="icon" href="./images/favicon.png" type="image/png"> --> <!-- caso seja imagem -->
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body>
+    <!-- TODO: Refatorar, deve ser injetado de forma dinamica -->
+
+    <div class="modal-header container">
+        <div id="logo">
+            <h1 class="logo">
+                <a id="link-suporte" class="logo-icon" target="_blank"></a>
+            </h1>
+        </div>
+        <div class="theme"> <button id="btnSw" title="Tema"></button> </div>
+        <div class="container container-2-vertical">
+            <button id="m-home" class="inactive" style="background-color: transparent;"><a title="Página Inicial" href="./popup.html">Home</a></button>
+            <!-- <div class="home"> <button id="home" title="Página Inicial"><a class="home-icon" href="./config.html"></a></button> </div> -->
+
+            <div id="version" class="connected"><span>v0.0.0</span></div>
+        </div>
+    </div>
+    <div class="sep"></div>
+
+    <div class="modal-content " >
+        <h1>Configurações</h1>
+
+        <div class="grid-container-1">
+            <div>
+                <button id="cleanCache" class="btn">Limpar Cache de Configurações</button>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar página Pull Request</p>
+            <div>
+                <!-- <input type="checkbox" id="pr" class="toggle-checkbox disabled" checked disabled>
+                <label for="pr" class="toggle-label disabled"></label> -->
+                <input type="checkbox" id="habilitaPR" class="toggle-checkbox" data-name="habilitaPR">
+                <label for="habilitaPR" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar Bloco Ferramentas</p>
+            <div>
+                <input type="checkbox" id="habilitaTools" class="toggle-checkbox" data-name="habilitaTools">
+                <label for="habilitaTools" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar Tema Natal</p>
+            <div>
+                <input type="checkbox" id="temeChristmas" class="toggle-checkbox" data-name="temeChristmas">
+                <label for="temeChristmas" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar Tema Halloween</p>
+            <div>
+                <input type="checkbox" id="temeHalloween" class="toggle-checkbox" data-name="temeHalloween">
+                <label for="temeHalloween" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar Tema Páscoa</p>
+            <div>
+                <input type="checkbox" id="temePascoa" class="toggle-checkbox" data-name="temePascoa">
+                <label for="temePascoa" class="toggle-label"></label>
+            </div>
+        </div>
+
+        <div class="sep"></div>
+                <div class="grid grid-container-2 container-2">
+            <p>Habilitar Tema Carnaval</p>
+            <div>
+                <input type="checkbox" id="temeCarnaval" class="toggle-checkbox" data-name="temeCarnaval">
+                <label for="temeCarnaval" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+
+        <div class="grid grid-container-2 container-2">
+            <p>Habilitar Tema Reveillon</p>
+            <div>
+                <input type="checkbox" id="temeReveillon" class="toggle-checkbox" data-name="temeReveillon">
+                <label for="temeReveillon" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>       
+
+    </div>
+
+    <script type="text/javascript" src="../js/listas.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/utils.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+</body>
+
+</html>
