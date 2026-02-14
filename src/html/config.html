@@ -22,7 +22,8 @@
         </div>
         <div class="theme"> <button id="btnSw" title="Tema"></button> </div>
         <div class="container container-2-vertical">
-            <button id="m-home" class="inactive" style="background-color: transparent;"><a title="Página Inicial" href="./popup.html">Home</a></button>
+            <button id="m-home" class="inactive" style="background-color: transparent;"><a title="Página Inicial"
+                    href="./popup.html">Home</a></button>
             <!-- <div class="home"> <button id="home" title="Página Inicial"><a class="home-icon" href="./config.html"></a></button> </div> -->
 
             <div id="version" class="connected"><span>v0.0.0</span></div>
@@ -30,7 +31,7 @@
     </div>
     <div class="sep"></div>
 
-    <div class="modal-content " >
+    <div class="modal-content ">
         <h1>Configurações</h1>
 
         <div class="grid-container-1">
@@ -61,50 +62,85 @@
         <div class="sep"></div>
 
         <div class="grid grid-container-2 container-2">
-            <p>Habilitar Tema Natal</p>
+            <p>Permitir Tema Natal</p>
             <div>
-                <input type="checkbox" id="temeChristmas" class="toggle-checkbox" data-name="temeChristmas">
-                <label for="temeChristmas" class="toggle-label"></label>
+                <input type="checkbox" id="theme-Christmas" class="toggle-checkbox" data-name="theme-Christmas">
+                <label for="theme-Christmas" class="toggle-label"></label>
+            </div>
+        </div>
+        <div id="allow-force-christmas" class="grid grid-container-2 container-2 right hidden">
+            <p title="Força o Tema">Habilitar</p>
+            <div>
+                <input type="checkbox" id="force-christmas" class="toggle-checkbox" data-name="force-christmas">
+                <label for="force-christmas" class="toggle-label"></label>
             </div>
         </div>
         <div class="sep"></div>
 
         <div class="grid grid-container-2 container-2">
-            <p>Habilitar Tema Halloween</p>
+            <p>Permitir Tema Halloween</p>
             <div>
-                <input type="checkbox" id="temeHalloween" class="toggle-checkbox" data-name="temeHalloween">
-                <label for="temeHalloween" class="toggle-label"></label>
+                <input type="checkbox" id="theme-Halloween" class="toggle-checkbox" data-name="theme-Halloween">
+                <label for="theme-Halloween" class="toggle-label"></label>
+            </div>
+        </div> 
+        <div id="allow-force-halloween" class="grid grid-container-2 container-2 right hidden">
+            <p title="Força o Tema">Habilitar</p>
+            <div>
+                <input type="checkbox" id="force-halloween" class="toggle-checkbox" data-name="force-halloween">
+                <label for="force-halloween" class="toggle-label"></label>
             </div>
         </div>
         <div class="sep"></div>
 
         <div class="grid grid-container-2 container-2">
-            <p>Habilitar Tema Páscoa</p>
+            <p>Permitir Tema Páscoa</p>
             <div>
-                <input type="checkbox" id="temePascoa" class="toggle-checkbox" data-name="temePascoa">
-                <label for="temePascoa" class="toggle-label"></label>
+                <input type="checkbox" id="theme-Easter" class="toggle-checkbox" data-name="theme-Easter">
+                <label for="theme-Easter" class="toggle-label"></label>
+            </div>
+        </div> 
+        <div id="allow-force-easter" class="grid grid-container-2 container-2 right hidden">
+            <p title="Força o Tema">Habilitar</p>
+            <div>
+                <input type="checkbox" id="force-easter" class="toggle-checkbox" data-name="force-easter">
+                <label for="force-easter" class="toggle-label"></label>
             </div>
         </div>
 
         <div class="sep"></div>
-                <div class="grid grid-container-2 container-2">
-            <p>Habilitar Tema Carnaval</p>
-            <div>
-                <input type="checkbox" id="temeCarnaval" class="toggle-checkbox" data-name="temeCarnaval">
-                <label for="temeCarnaval" class="toggle-label"></label>
-            </div>
-        </div>
-        <div class="sep"></div>
-
 
         <div class="grid grid-container-2 container-2">
-            <p>Habilitar Tema Reveillon</p>
+            <p>Permitir Tema Carnaval</p>
             <div>
-                <input type="checkbox" id="temeReveillon" class="toggle-checkbox" data-name="temeReveillon">
-                <label for="temeReveillon" class="toggle-label"></label>
+                <input type="checkbox" id="theme-Carnaval" class="toggle-checkbox" data-name="theme-Carnaval">
+                <label for="theme-Carnaval" class="toggle-label"></label>
             </div>
         </div>
-        <div class="sep"></div>       
+        <div id="allow-force-carnaval" class="grid grid-container-2 container-2 right hidden">
+            <p title="Força o Tema">Habilitar</p>
+            <div>
+                <input type="checkbox" id="force-carnaval" class="toggle-checkbox" data-name="force-carnaval">
+                <label for="force-carnaval" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="grid grid-container-2 container-2">
+            <p>Permitir Tema Reveillon</p>
+            <div>
+                <input type="checkbox" id="theme-Reveillon" class="toggle-checkbox" data-name="theme-Reveillon">
+                <label for="theme-Reveillon" class="toggle-label"></label>
+            </div>
+        </div>
+        <div id="allow-force-reveillon" class="grid grid-container-2 container-2 right hidden">
+            <p title="Força o Tema">Habilitar</p>
+            <div>
+                <input type="checkbox" id="force-reveillon" class="toggle-checkbox" data-name="force-reveillon">
+                <label for="force-reveillon" class="toggle-label"></label>
+            </div>
+        </div>
+        <div class="sep"></div>
 
     </div>
 

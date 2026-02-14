@@ -24,11 +24,11 @@ const SuporteUrl = 'http://google.com';
 const SuporteMensagem = 'Clique para acessar o portal do suporte';
 
 const habilitarConfiguracoes = true; // Não Alterar
-const habilitaNatal = true;
-const habilitaHalloween = true;
-const habilitaPascoa = true;
-const habilitaCarnaval = false;
-const habilitaReveillon = true;
+const permitirNatal = true;
+const permitirHalloween = true;
+const permitirEaster = true;
+const permitirCarnaval = false;
+const permitirReveillon = true;
 
 const advancedMode = true;
 

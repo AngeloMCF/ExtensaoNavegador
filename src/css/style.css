@@ -23,7 +23,7 @@
     --url-logo: url('../images/logo-light.png');
     --color-version: #696767b6;
     --color-online: rgba(0, 105, 0, 0.5);
-    --toggle-background-color : rgb(117, 117, 117);
+    --toggle-background-color: rgb(117, 117, 117);
 }
 
 
@@ -43,7 +43,7 @@
     --url-logo: url('../images/logo-dark.png');
     --color-version: #8787878a;
     --color-online: rgba(0, 255, 0, 0.5);
-    --toggle-background-color : #888888;
+    --toggle-background-color: #888888;
 }
 
 
@@ -81,8 +81,16 @@ title {
     font-size: 20px;
 }
 
+.hidden,
 .grid-container-3 .hidden,
-.hidden {
+.hidden p,
+.hidden h1,
+.hidden h2,
+.hidden h3,
+.hidden h4,
+.hidden input,
+.hidden label
+{
     display: none;
 }
 
@@ -464,4 +472,8 @@ a:hover {
 
 .disabled {
     pointer-events: none;
+}
+
+.right {
+    text-align: right;
 }

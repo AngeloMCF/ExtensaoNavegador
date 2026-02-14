@@ -297,11 +297,11 @@ let defaultConfig = {
     'color-mode': 'dark',
     'habilitaPR': 0,
     'habilitaTools': 0,
-    'temeChristmas': habilitaNatal ? 1 : 0,
-    'temeHalloween': habilitaHalloween ? 1 : 0,
-    'temePascoa': habilitaPascoa ? 1 : 0,
-    'temeCarnaval': habilitaCarnaval ? 1 : 0,
-    'temeReveillon': habilitaReveillon ? 1 : 0,
+    'theme-Christmas': permitirNatal ? 1 : 0,
+    'theme-Halloween': permitirHalloween ? 1 : 0,
+    'theme-Easter': permitirEaster ? 1 : 0,
+    'theme-Carnaval': permitirCarnaval ? 1 : 0,
+    'theme-Reveillon': permitirReveillon ? 1 : 0,
     'numeroParticulas': numeroParticulas ?? 30
 };
 
@@ -334,9 +334,44 @@ function init() {
 
 
 function gravarlocal(element) {
-    localStorage.setItem(element.dataset.name, element.checked ? 1 : 0);
+    let isForced = localStorage.getItem('force');
+
+    if (element.dataset.name.includes('theme') || element.dataset.name.includes('habilita')) {
+        localStorage.setItem(element.dataset.name, element.checked ? 1 : 0);
+    }
+
+    if (element.dataset.name.includes('theme')) {
+        let key = element.dataset.name.replace('theme-', '').toLowerCase();
+
+        if (element.checked) {
+            document.getElementById(`allow-force-${key}`).classList.remove('hidden')
+        }
+        else {
+            document.getElementById(`allow-force-${key}`).classList.add('hidden')
+            document.getElementById(`force-${key}`).checked = false
+
+            if (localStorage.getItem('force') === key)
+                localStorage.removeItem('force')
+
+        }
+    }
+    else if (element.dataset.name.includes('force')) {
+
+        if (element.checked) {
+
+            if (isForced)
+                document.getElementById(`force-${isForced}`).checked = false
+            localStorage.setItem('force', element.dataset.name.replace('force-', ''))
+        }
+        else {
+            localStorage.removeItem('force')
+        }
+    }
 
     if (debug) { console.table(localStorage); }
+
+    // TODO: padronizar id de tema festivo
+    // tem bug on/off do tema
     switchMonth();
 };
 
@@ -351,10 +386,18 @@ function initConfig() {
     for (i in defaultConfig) {
         if (debug) console.log(`initConfig -> defaultConfig: ${i} : ${defaultConfig[i]} `);
 
-        try {
+        let key = i.replace('theme-', '').toLowerCase();
+
+        if (i.toLowerCase().includes('theme') || i.toLowerCase().includes('habilita')) {
             document.getElementById(i).addEventListener('click', function () { gravarlocal(this); });
             document.getElementById(i).checked = Boolean(parseInt(localStorage.getItem(i)))
-        } catch { }
+        }
+
+        if (i.toLowerCase().includes('theme') && Boolean(parseInt(localStorage.getItem(i)))) {
+            document.getElementById(`force-${key}`).addEventListener('click', function () { gravarlocal(this); });
+            document.getElementById(`allow-force-${key}`).classList.remove('hidden')
+            document.getElementById(`force-${key}`).checked = localStorage.getItem('force') === key;
+        }
 
     }
 };

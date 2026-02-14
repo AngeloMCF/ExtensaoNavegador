@@ -59,6 +59,7 @@ function switchMonth() {
     var bodyElement = document.body;
     const headElement = document.head;
     const linkElement = document.createElement('link');
+    linkElement.id = 'comemorative';
     linkElement.rel = 'stylesheet';
     linkElement.type = 'text/css';
 
@@ -66,91 +67,148 @@ function switchMonth() {
     const pointer = document.createElement('div');
     pointer.classList.add("pointer");
 
+    if (document.getElementById('comemorative'))
+        document.getElementById('comemorative').remove()
 
-    switch (date.getMonth() /*0-11*/) {
-        case 11: // Dezembro
-            // reveillon
-            if (Boolean(parseInt(localStorage.getItem('temeReveillon')))) {
-                if (date.getDate() >= 27) {
-                    linkElement.href = '../css/style-reveillon.css';
-                    bodyElement.setAttribute('id', 'reveillon-' + localTheme);
-                    bodyElement.setAttribute('class', localTheme);
-                    break;
-                };
-            };
+    function themeChristmas(force = false) {
+        if (Boolean(parseInt(localStorage.getItem('theme-Christmas'))) || force) {
 
-            if (Boolean(parseInt(localStorage.getItem('temeChristmas')))) {
+            linkElement.href = '../css/style-christmas.css';
+            bodyElement.setAttribute('id', 'christmas');
 
-                linkElement.href = '../css/style-christmas.css';
-                bodyElement.setAttribute('id', 'christmas');
-                bodyElement.setAttribute('class', localTheme);
-
-                if (!bodyElement.getElementsByClassName('snowflake')[0]) {
-                    for (var i = 0; i < 6; i++) {
-                        const snowflake = document.createElement('div');
-                        snowflake.setAttribute('class', 'snowflake');
-                        snowflake.innerHTML = '❄';
-                        if (localTheme === 'light') {
-                            snowflake.style = "color: var(--color-text)";
-
-                        };
-                        sep.append(snowflake);
+            if (!bodyElement.getElementsByClassName('snowflake')[0]) {
+                for (var i = 0; i < 6; i++) {
+                    const snowflake = document.createElement('div');
+                    snowflake.setAttribute('class', 'snowflake');
+                    snowflake.innerHTML = '❄';
+                    if (localTheme === 'light') {
+                        snowflake.style = "color: var(--color-text)";
                     };
+                    sep.append(snowflake);
                 };
             };
-            break;
-        case 9: // Outubro
-            if (Boolean(parseInt(localStorage.getItem('temeHalloween')))) {
-                linkElement.href = '../css/style-halloween.css';
-                bodyElement.setAttribute('id', 'halloween-' + localTheme);
+        };
 
-                if (!document.getElementsByClassName('pointer')[0]) {
-                    pointer.innerHTML = "👻";
-                    sep.after(pointer);
-                };
+    }
 
-                // sep.classList.add('pumpkins');
+    function themeReveillon(force = false) {
+        if (Boolean(parseInt(localStorage.getItem('theme-Reveillon'))) || force) {
+            linkElement.href = '../css/style-reveillon.css';
+            bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+
+        };
+    };
+
+    function themeHalloween(force = false) {
+        if (Boolean(parseInt(localStorage.getItem('theme-Halloween')) || force)) {
+            linkElement.href = '../css/style-halloween.css';
+            bodyElement.setAttribute('id', 'halloween-' + localTheme);
+
+            if (!document.getElementsByClassName('pointer')[0]) {
+                pointer.innerHTML = "👻";
+                sep.after(pointer);
             };
 
-            break;
-        case 3: // Abril
-            if (Boolean(parseInt(localStorage.getItem('temePascoa')))) {
-                linkElement.href = '../css/style-easter.css';
-                bodyElement.setAttribute('id', 'easter-' + localTheme);
-            };
-            break;
-        case 0: // Janeiro
-            // reveillon
-            if (Boolean(parseInt(localStorage.getItem('temeReveillon')))) {
+            // sep.classList.add('pumpkins');
+        };
 
-                // if (date.getDate() <= 7) {
-                linkElement.href = '../css/style-reveillon.css';
-                bodyElement.setAttribute('id', 'reveillon-' + localTheme);
-                bodyElement.setAttribute('class', localTheme);
-                // }
-                break;
-            }
+    };
+
+    function themeEaster(force = false) {
+        if (Boolean(parseInt(localStorage.getItem('theme-Easter'))) || force) {
+            linkElement.href = '../css/style-easter.css';
+            bodyElement.setAttribute('id', 'easter-' + localTheme);
+        };
+    };
+
+    function themeReveillon(force = false) {
+        let allow = Boolean(parseInt(localStorage.getItem('theme-Reveillon')))
+
+        if (allow || (force && allow)) {
+            linkElement.href = '../css/style-reveillon.css';
+            bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+        };
+    };
+
+    function themeCarnaval(force = false) {
+        let allow = Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
+
+        if (allow || (force && allow)) {
+            linkElement.href = '../css/style-carnaval.css';
+            bodyElement.setAttribute('id', 'carnaval');
+
+            startConfetti();
+        };
+
+    };
+
+    let datePlus7 = new Date(date);
+    datePlus7.setDate(datePlus7.getDate() + 7);
+    let dateMinus7 = new Date(date);
+    dateMinus7.setDate(dateMinus7.getDate() - 7);
+
+    switch (localStorage.getItem('force')) {
+        case 'christmas':
+            themeChristmas(true)
             break;
+        case 'halloween':
+            themeHalloween(true)
+            break;
+        case 'easter':
+            themeEaster(true)
+            break;
+        case 'carnaval':
+            themeCarnaval(true)
+            break;
+        case 'reveillon':
+            themeReveillon(true)
+            break;
+
         default:
-            updateHtml = false;
+
+            switch (date.getMonth() /*0-11*/) {
+                case 11: // Dezembro
+                    // reveillon
+                    if (date.getDate() >= 27) {
+                        themeReveillon();
+                        break;
+                    };
+
+                    themeChristmas();
+                    break;
+                case 9: // Outubro
+                    themeHalloween();
+                    break;
+                case 0: // Janeiro
+                    // reveillon
+                    if (date.getDate() <= 7) {
+                        themeReveillon();
+                    };
+                    break;
+                default:
+                    // carnval
+                    if (
+                        Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
+                        && date >= carnvalStartDate && date <= carnavalDate
+                    ) {
+                        themeCarnaval();
+                        break;
+                    }
+                    // pascoa
+                    else if (easterDate >= dateMinus7 && easterDate <= datePlus7) {
+                        themeEaster();
+                        break;
+                    };
+
+                    updateHtml = false;
+                    break;
+            }
             break;
     }
 
-    // TODO: refatorar
-    if (
-        Boolean(parseInt(localStorage.getItem('temeCarnaval'))) && !updateHtml
-        && date.toISOString().split('T')[0] >= carnvalStartDate.toISOString().split('T')[0]
-        && date.toISOString().split('T')[0] <= carnavalDate.toISOString().split('T')[0]
-    ) {
-        linkElement.href = '../css/style-carnaval.css';
-        bodyElement.setAttribute('id', 'carnaval');
+    if (updateHtml) {
         bodyElement.setAttribute('class', localTheme);
 
-        startConfetti();
-        updateHtml = true;
-    };
-
-    if (updateHtml) {
         headElement.append(linkElement);
     };
 };
