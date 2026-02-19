@@ -4,7 +4,7 @@
 #easter-light {
     --color-backgruond: #fafafa;
     --color-backgruond-button: #f2e6f7;
-    --color-backgruond-tooltip: #ffffff; 
+    --color-backgruond-tooltip: #ffffff;
     --color-text: #2f2f2f;
     --color-title: #7b4f9d;
     --color-tooltip: #2f2f2f;
@@ -13,7 +13,7 @@
     --color-a-visited: #5f3b85;
     --color-rgba: 123, 79, 157;
     --color-rgba-alpha: 0.12;
-    --url-logo: url(../images/logo-easter.png);
+    /* --url-logo: url(../images/logo-easter.png); */
     --color-version: #7b4f9d80;
     --color-online: rgba(0, 150, 80, 0.6);
     --color-offline: rgba(200, 50, 50, 0.6);
@@ -41,7 +41,7 @@ body#easter-light {
     --color-a-visited: #cfa7ff;
     --color-rgba: 197, 143, 223;
     --color-rgba-alpha: 0.2;
-    --url-logo: url(../images/logo-easter.png);
+    /* --url-logo: url(../images/logo-easter.png); */
     --color-version: #c58fdf80;
     --color-online: rgba(80, 200, 150, 0.7);
     --color-offline: rgba(255, 80, 80, 0.7);
@@ -57,9 +57,9 @@ body#easter-dark {
 /* ------------------ */
 /* Shared Easter Style*/
 /* ------------------ */
-#easter-light h1, 
+#easter-light h1,
 #easter-light strong,
-#easter-dark h1, 
+#easter-dark h1,
 #easter-dark strong {
     text-shadow: 0 0 4px rgba(123, 79, 157, 0.2);
 }
@@ -112,9 +112,17 @@ body#easter-dark::after {
 }
 
 @keyframes bunnyRun {
-    0%   { transform: translateX(0) rotate(0deg); }
-    50%  { transform: translateX(110vw) rotate(10deg); }
-    100% { transform: translateX(0) rotate(0deg); }
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(110vw) rotate(10deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
 }
 
 /* ------------------ */
@@ -137,6 +145,11 @@ body#easter-dark .grass {
 }
 
 @keyframes grassWave {
-    0%   { transform: scaleY(1); }
-    100% { transform: scaleY(1.05); }
+    0% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(1.05);
+    }
 }

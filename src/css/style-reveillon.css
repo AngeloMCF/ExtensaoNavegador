@@ -6,14 +6,16 @@
     --color-backgruond-button: #fff7e6;
     --color-backgruond-tooltip: #ffffff;
     --color-text: #2a2a2a;
-    --color-title: #c9a300; /* dourado */
+    --color-title: #c9a300;
+    /* dourado */
     --color-tooltip: #2a2a2a;
-    --color-title-a-hover: #8c6c00; /* dourado escuro */
+    --color-title-a-hover: #8c6c00;
+    /* dourado escuro */
     --color-sep: #e5e5e5;
     --color-a-visited: #6c6c6c;
     --color-rgba: 201, 163, 0;
     --color-rgba-alpha: 0.15;
-    --url-logo: url(../images/logo-reveillon.png);
+    /* --url-logo: url(../images/logo-reveillon.png); */
     --color-version: #c9a30080;
     --color-online: rgba(0, 160, 80, 0.7);
     --color-offline: rgba(220, 60, 60, 0.7);
@@ -34,14 +36,15 @@ body#reveillon-light {
     --color-backgruond-button: #1f1f2e;
     --color-backgruond-tooltip: #2a2a3a;
     --color-text: #e6e6e6;
-    --color-title: #ffd700; /* dourado vivo */
+    --color-title: #ffd700;
+    /* dourado vivo */
     --color-tooltip: #fffbe6;
     --color-title-a-hover: #ffcc33;
     --color-sep: #33334d;
     --color-a-visited: #c2a100;
     --color-rgba: 255, 215, 0;
     --color-rgba-alpha: 0.18;
-    --url-logo: url(../images/logo-reveillon.png);
+    /* --url-logo: url(../images/logo-reveillon.png); */
     --color-version: #ffd70090;
     --color-online: rgba(0, 255, 150, 0.6);
     --color-offline: rgba(255, 80, 80, 0.75);
@@ -57,12 +60,12 @@ body#reveillon-dark {
 /* ------------------ */
 /* Shared Réveillon   */
 /* ------------------ */
-#reveillon-light h1, 
+#reveillon-light h1,
 #reveillon-light strong,
-#reveillon-dark h1, 
+#reveillon-dark h1,
 #reveillon-dark strong {
     text-shadow: 0 0 6px rgba(255, 215, 0, 0.3),
-                 0 0 12px rgba(255, 255, 200, 0.25);
+        0 0 12px rgba(255, 255, 200, 0.25);
 }
 
 #reveillon-light .grid-item:hover,
@@ -90,10 +93,25 @@ body#reveillon-dark {
 /* Fogos de Artifício 🎆 */
 /* ------------------ */
 @keyframes fireworks {
-    0%   { transform: scale(0.5); opacity: 0; }
-    30%  { transform: scale(1.2); opacity: 1; }
-    60%  { transform: scale(1.8); opacity: 0.8; }
-    100% { transform: scale(0); opacity: 0; }
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    30% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    60% {
+        transform: scale(1.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 
 body#reveillon-light::before,
@@ -154,7 +172,18 @@ body#reveillon-dark .champagne::before {
 }
 
 @keyframes bubbles {
-    0%   { transform: translateY(0) scale(0.6); opacity: 0.7; }
-    50%  { transform: translateY(-40px) scale(1); opacity: 1; }
-    100% { transform: translateY(-90px) scale(0.5); opacity: 0; }
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translateY(-40px) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-90px) scale(0.5);
+        opacity: 0;
+    }
 }

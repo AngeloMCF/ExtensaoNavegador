@@ -5,6 +5,7 @@
     --scrollbar-color: rgb(20 82 244 / 83%) rgba(0, 0, 0, 0.2);
     --url-copy-icon: ('../icons/copy.png');
     --url-config-icon: url('../icons/gear.png');
+    --url-logo: url('../images/logo-dark.png');
 }
 
 #light {
@@ -20,7 +21,7 @@
     --color-sep: #737373;
     --color-a-visited: #000;
     --color-rgba-alpha: 0.1;
-    --url-logo: url('../images/logo-light.png');
+    /* --url-logo: url('../images/logo-light.png'); */
     --color-version: #696767b6;
     --color-online: rgba(0, 105, 0, 0.5);
     --toggle-background-color: rgb(117, 117, 117);
@@ -40,7 +41,7 @@
     --color-sep: #dadada33;
     --color-a-visited: #dadada;
     --color-rgba-alpha: 0.8;
-    --url-logo: url('../images/logo-dark.png');
+    /* --url-logo: url('../images/logo-dark.png'); */
     --color-version: #8787878a;
     --color-online: rgba(0, 255, 0, 0.5);
     --toggle-background-color: #888888;
@@ -89,8 +90,7 @@ title {
 .hidden h3,
 .hidden h4,
 .hidden input,
-.hidden label
-{
+.hidden label {
     display: none;
 }
 

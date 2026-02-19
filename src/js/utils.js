@@ -1,7 +1,18 @@
 const icons = {
     copy_dark: '../icons/copy-two-paper-sheets-interface-symbol.png',
     copy_light: '../icons/copy.png'
-}
+};
+
+let localTheme = localStorage.getItem('color-mode');
+
+if (!localTheme) {
+    localStorage.setItem('color-mode', 'dark');
+    localTheme = localStorage.getItem('color-mode');
+};
+
+
+let logoImage = localTheme === 'light' ? imagens.logo_light : imagens.logo_dark
+const root = document.documentElement;
 
 let carnavalDate = new Date(easterDate);
 carnavalDate.setDate(easterDate.getDate() - 46); // cai na quarta de cinzas
@@ -29,13 +40,6 @@ catch (e) {
 
 const btn = document.getElementById('btnSw');
 document.getElementById("btnSw").addEventListener("click", SwitchTheme);
-
-let localTheme = localStorage.getItem('color-mode');
-
-if (!localTheme) {
-    localStorage.setItem('color-mode', 'dark');
-    localTheme = localStorage.getItem('color-mode');
-};
 
 function LimpalocalStorage() {
 
@@ -67,14 +71,25 @@ function switchMonth() {
     const pointer = document.createElement('div');
     pointer.classList.add("pointer");
 
-    if (document.getElementById('comemorative'))
+    if (document.getElementById('comemorative')) {
         document.getElementById('comemorative').remove()
+    }
 
     function themeChristmas(force = false) {
         if (Boolean(parseInt(localStorage.getItem('theme-Christmas'))) || force) {
 
             linkElement.href = '../css/style-christmas.css';
             bodyElement.setAttribute('id', 'christmas');
+
+            if (imagens['logo_natal_dark']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_natal_dark']})`)
+            }
+            else if (imagens['logo_natal_light']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_natal_light']})`)
+            }
+            else if (imagens['logo_natal']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_natal']})`)
+            }
 
             if (!bodyElement.getElementsByClassName('snowflake')[0]) {
                 for (var i = 0; i < 6; i++) {
@@ -91,18 +106,21 @@ function switchMonth() {
 
     }
 
-    function themeReveillon(force = false) {
-        if (Boolean(parseInt(localStorage.getItem('theme-Reveillon'))) || force) {
-            linkElement.href = '../css/style-reveillon.css';
-            bodyElement.setAttribute('id', 'reveillon-' + localTheme);
-
-        };
-    };
-
     function themeHalloween(force = false) {
         if (Boolean(parseInt(localStorage.getItem('theme-Halloween')) || force)) {
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
+
+            if (imagens['logo_halloween_dark']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween_dark']})`)
+            }
+            else if (imagens['logo_halloween_light']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween_light']})`)
+            }
+            else if (imagens['logo_halloween']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween']})`)
+            }
+
 
             if (!document.getElementsByClassName('pointer')[0]) {
                 pointer.innerHTML = "👻";
@@ -118,6 +136,17 @@ function switchMonth() {
         if (Boolean(parseInt(localStorage.getItem('theme-Easter'))) || force) {
             linkElement.href = '../css/style-easter.css';
             bodyElement.setAttribute('id', 'easter-' + localTheme);
+
+            if (imagens['logo_easter_dark']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_easter_dark']})`)
+            }
+            else if (imagens['logo_easter_light']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_easter_light']})`)
+            }
+            else if (imagens['logo_easter']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_easter']})`)
+            }
+
         };
     };
 
@@ -127,6 +156,17 @@ function switchMonth() {
         if (allow || (force && allow)) {
             linkElement.href = '../css/style-reveillon.css';
             bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+
+            if (imagens['logo_reveillon_dark']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon_dark']})`)
+            }
+            else if (imagens['logo_reveillon_light']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon_light']})`)
+            }
+            else if (imagens['logo_reveillon']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon']})`)
+            }
+
         };
     };
 
@@ -136,6 +176,17 @@ function switchMonth() {
         if (allow || (force && allow)) {
             linkElement.href = '../css/style-carnaval.css';
             bodyElement.setAttribute('id', 'carnaval');
+
+            if (imagens['logo_carnaval_dark']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval_dark']})`)
+            }
+            else if (imagens['logo_carnaval_light']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval_light']})`)
+            }
+            else if (imagens['logo_carnaval']) {
+                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval']})`)
+            }
+
 
             startConfetti();
         };
@@ -201,6 +252,8 @@ function switchMonth() {
                     };
 
                     updateHtml = false;
+                    root.style.setProperty('--url-logo', `url(${logoImage})`)
+                    console.log(logoImage)
                     break;
             }
             break;
@@ -211,6 +264,7 @@ function switchMonth() {
 
         headElement.append(linkElement);
     };
+
 };
 
 

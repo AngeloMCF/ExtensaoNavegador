@@ -13,7 +13,7 @@
     --color-a-visited: #8e44ad;
     --color-rgba: 196, 77, 0;
     --color-rgba-alpha: 0.15;
-    --url-logo: url(../images/logo-halloween.png);
+    /* --url-logo: url(../images/logo-halloween.png); */
     --color-version: #c44d0080;
     --color-online: rgba(0, 150, 80, 0.6);
     --color-offline: rgba(200, 50, 50, 0.6);
@@ -38,7 +38,7 @@ body#halloween-light {
     --color-a-visited: #ff9933;
     --color-rgba: 255, 140, 0;
     --color-rgba-alpha: 0.15;
-    --url-logo: url(../images/logo-halloween.png);
+    /* --url-logo: url(../images/logo-halloween.png); */
     --color-version: #ff75188f;
     --color-online: rgba(0, 255, 128, 0.6);
     --color-offline: rgba(255, 50, 50, 0.7);

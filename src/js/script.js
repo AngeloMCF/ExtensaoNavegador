@@ -6,6 +6,19 @@ const btnPullRequest = document.getElementById('m-pullrequest');
 const home = document.getElementById('home');
 const wiki = document.getElementById('wiki');
 
+let defaultConfig = {
+    'advancedMode': advancedMode ? 1 : 0,
+    'color-mode': 'dark',
+    'habilitaPR': 0,
+    'habilitaTools': 0,
+    'theme-Christmas': permitirNatal ? 1 : 0,
+    'theme-Halloween': permitirHalloween ? 1 : 0,
+    'theme-Easter': permitirEaster ? 1 : 0,
+    'theme-Carnaval': permitirCarnaval ? 1 : 0,
+    'theme-Reveillon': permitirReveillon ? 1 : 0,
+    'numeroParticulas': numeroParticulas ?? 30
+};
+
 
 if (debug) {
     console.log('imagens');
@@ -291,19 +304,6 @@ function initHome() {
 
 };
 
-
-let defaultConfig = {
-    'advancedMode': advancedMode ? 1 : 0,
-    'color-mode': 'dark',
-    'habilitaPR': 0,
-    'habilitaTools': 0,
-    'theme-Christmas': permitirNatal ? 1 : 0,
-    'theme-Halloween': permitirHalloween ? 1 : 0,
-    'theme-Easter': permitirEaster ? 1 : 0,
-    'theme-Carnaval': permitirCarnaval ? 1 : 0,
-    'theme-Reveillon': permitirReveillon ? 1 : 0,
-    'numeroParticulas': numeroParticulas ?? 30
-};
 
 function setDefaultConfig() {
     if (debug) console.log('setDefaultConfig');
