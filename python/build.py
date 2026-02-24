@@ -82,7 +82,7 @@ def generate_build():
 
 def copiar_pasta(origem, destino):
     def ignore_files(dir, files):
-        return [f for f in files if '_' in f]
+        return [f for f in files if str(f).startswith('_')]
 
     if validar_caminho(destino):
         return
