@@ -29,7 +29,7 @@ const advancedMode = true;
 // Alterar caso o navegador fique pesado
 const numeroParticulas = 30;
 
-const easterDate = new Date('2026-04-05');
+const easterDate = new Date('2026-04-05T00:00:00');
 const carnavalDays = 7;
 
 

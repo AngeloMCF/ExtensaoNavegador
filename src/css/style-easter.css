@@ -113,15 +113,19 @@ body#easter-dark::after {
 
 @keyframes bunnyRun {
     0% {
-        transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg) scaleX(-1);
     }
 
     50% {
-        transform: translateX(110vw) rotate(10deg);
+        transform: translateX(130vw) rotate(10deg) scaleX(-1);
+    }
+
+    51% {
+        transform: translateX(130vw) rotate(10deg) scaleX(1);
     }
 
     100% {
-        transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg) scaleX(1);
     }
 }
 
