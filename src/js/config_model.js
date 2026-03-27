@@ -13,6 +13,8 @@ const imagens = {
     // logo_carnaval: '../images/logo-carnaval.png',
 }
 
+const cssAdicionar = []
+
 // Deixar como "#" caso não tenha link e deixar mensagem vazia
 const SuporteUrl = 'http://google.com';
 const SuporteMensagem = 'Clique para acessar o portal do suporte';

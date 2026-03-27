@@ -56,8 +56,23 @@ function LimpalocalStorage() {
 }
 
 
+function addCSS() {
+    if (cssAdicionar) {
+        for (css in cssAdicionar) {
+            let cssHeadLink = document.createElement('link');
+            cssHeadLink.rel = 'stylesheet'
+            cssHeadLink.type = 'text/css'
+            cssHeadLink.href = `../css/${cssAdicionar[css]}`
+
+            document.head.append(cssHeadLink)
+        }
+    }
+}
+
 function switchMonth() {
     let date = new Date();
+
+    addCSS()
 
     var updateHtml = true;
     var bodyElement = document.body;
@@ -253,7 +268,6 @@ function switchMonth() {
 
                     updateHtml = false;
                     root.style.setProperty('--url-logo', `url(${logoImage})`)
-                    console.log(logoImage)
                     break;
             }
             break;
