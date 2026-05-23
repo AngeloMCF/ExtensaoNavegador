@@ -126,6 +126,14 @@ const Tools = [
         URL: "https://chatgpt.com/",
     },
     {
+        nome: "Manus",
+        URL: "https://manus.im/app",
+    },
+    {
+        nome: "Claude",
+        URL: "https://chat.chatbot.app/claude",
+    },
+    {
         nome: "HTML Viewer",
         URL: "https://html.onlineviewer.net/",
     }
