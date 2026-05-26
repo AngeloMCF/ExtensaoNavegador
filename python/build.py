@@ -44,9 +44,8 @@ def generate_build():
     
     final_dir:str = path.join(dicionario['diretorio_saida'], dicionario['pasta_final'])
     
-    remove_dir(final_dir)
-    create_dir(final_dir)
-
+    recreate_dir(final_dir)
+    
     final_content_dir:str = path.join(build_dir, dicionario['pasta_final_conteudo'])
     create_dir(final_content_dir)
     
@@ -82,18 +81,24 @@ def generate_build():
     versao:str = get_version(path.join(final_dir, 'manifest.json'))
     
     nem_file_name:str = final_dir + '-' + versao
-    rename_file(final_dir, nem_file_name)
-    
-    print(f'Aquivos salvoss em: {nem_file_name}')
 
-    zip_file(nem_file_name, build_dir)
-    
+    recreate_dir(nem_file_name)
 
+    copiar_pasta(final_dir, path.join(nem_file_name,dicionario['pasta_final']) )
+    
+    print(f'Aquivos salvos em: {nem_file_name}')
+    zip_file(path.join(nem_file_name,dicionario['pasta_final']))
+    
+def recreate_dir(dir_name:str) -> None:
+    remove_dir(dir_name)
+    create_dir(dir_name)
+    
 def copiar_pasta(origem, destino):
     def ignore_files(dir, files):
         return [f for f in files if str(f).startswith('_')]
 
     if validar_caminho(destino):
+        print(f'A pasta de destino já existe. | {destino}')
         return
     
     try:
@@ -119,10 +124,11 @@ def get_version(file_path:str) -> str:
     return version
 
 
-def zip_file(file_name:str, out_path:str) -> None:
+def zip_file(file_name:str) -> None:
 
-    shutil.make_archive(file_name, 'zip', out_path)
-    print(f'Aquivos salvoss em: {file_name}.zip')
+    shutil.make_archive(base_name= file_name, format= 'zip', root_dir= file_name)
+    print(f'Aquivos salvos em: {file_name}.zip')
+    remove_dir(file_name)
     
 
 def remove_dir(path:str) -> None:
