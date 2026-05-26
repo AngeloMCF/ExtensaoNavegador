@@ -1,4 +1,4 @@
-import os
+﻿import os
 import os.path as path
 import shutil
 
@@ -24,21 +24,42 @@ dicionario:dict = {
         ,'src/js/listas_model.js': 'src/js/listas.js'
         }
 }
+
 def limpa_tela () -> None:
+    """
+    Limpa o console do terminal de acordo com o sistema operacional.
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def create_dir(dir_path:str) -> None:
+    """
+    Cria um diretório se ele ainda não existir.
 
+    Args:
+        dir_path (str): Caminho do diretório a ser criado.
+    """
     if not validar_caminho(dir_path):
         os.mkdir(dir_path)
-   
             
 def validar_caminho(path:str) -> bool:
+    """
+    Verifica se um caminho (arquivo ou diretório) existe no sistema.
+
+    Args:
+        path (str): Caminho a ser validado.
+
+    Returns:
+        bool: True se existir, False caso contrário.
+    """
     return os.path.exists(path)
 
-
 def generate_build():
+    """
+    Executa o fluxo principal de geração do build da extensão.
     
+    O processo inclui a criação de pastas, cópia de manifestos,
+    recursos estáticos e scripts, além do empacotamento final em ZIP.
+    """
     build_dir:str = path.join(dicionario['diretorio_saida'])
     create_dir(build_dir)
     
@@ -66,7 +87,6 @@ def generate_build():
         origin_path:str = path.join(dicionario['diretorio_raiz'] , file.replace('/', '\\'))
         final_path:str = path.join(final_dir, file.replace('/', '\\'))
 
-
         if path.isfile(origin_path):
             f = '\\'.join([ texto for texto in file.split('/') if not str(texto).endswith('.js')])
             
@@ -90,10 +110,23 @@ def generate_build():
     zip_file(path.join(nem_file_name,dicionario['pasta_final']))
     
 def recreate_dir(dir_name:str) -> None:
+    """
+    Remove um diretório se ele existir e o cria novamente.
+
+    Args:
+        dir_name (str): Nome do diretório a ser recriado.
+    """
     remove_dir(dir_name)
     create_dir(dir_name)
     
 def copiar_pasta(origem, destino):
+    """
+    Copia o conteúdo de uma pasta de origem para um destino, ignorando arquivos temporários.
+
+    Args:
+        origem (str): Caminho da pasta de origem.
+        destino (str): Caminho da pasta de destino.
+    """
     def ignore_files(dir, files):
         return [f for f in files if str(f).startswith('_')]
 
@@ -108,9 +141,16 @@ def copiar_pasta(origem, destino):
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
 
-
 def get_version(file_path:str) -> str:
+    """
+    Extrai a versão da extensão a partir do arquivo manifest.json.
 
+    Args:
+        file_path (str): Caminho para o arquivo manifest.json.
+
+    Returns:
+        str: String da versão encontrada.
+    """
     version:str = ''
 
     if validar_caminho(file_path):
@@ -123,24 +163,38 @@ def get_version(file_path:str) -> str:
 
     return version
 
-
 def zip_file(file_name:str) -> None:
+    """
+    Compacta um diretório em um arquivo ZIP e remove a pasta original.
 
+    Args:
+        file_name (str): Nome/Caminho do diretório a ser compactado.
+    """
     shutil.make_archive(base_name= file_name, format= 'zip', root_dir= file_name)
     print(f'Aquivos salvos em: {file_name}.zip')
     remove_dir(file_name)
     
-
 def remove_dir(path:str) -> None:
+    """
+    Remove recursivamente um diretório e todo o seu conteúdo.
+
+    Args:
+        path (str): Caminho do diretório a ser removido.
+    """
     if validar_caminho(path):
         try:
             shutil.rmtree(path)
         except OSError as e:
             print(f"Erro: {e.strerror}")            
 
-
 def rename_file(file:str, new_file_name:str) -> None:
-    
+    """
+    Renomeia um arquivo existente.
+
+    Args:
+        file (str): Caminho atual do arquivo.
+        new_file_name (str): Novo nome/caminho para o arquivo.
+    """
     if not validar_caminho(file):
         return
 
@@ -149,8 +203,10 @@ def rename_file(file:str, new_file_name:str) -> None:
         
     os.rename(file, new_file_name)
 
-
 def run() -> None:
+    """
+    Inicia a execução do script de build.
+    """
     limpa_tela()
     print('iniciando...')
     
