@@ -78,10 +78,16 @@ body#reveillon-dark {
     transition: all 0.25s ease;
 }
 
+#reveillon-light .grid-item.half-hidden:hover,
+#reveillon-dark .grid-item.half-hidden:hover{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 #reveillon-light a:hover,
 #reveillon-dark a:hover {
     color: var(--color-title-a-hover);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 #reveillon-light .sep,

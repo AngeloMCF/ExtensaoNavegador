@@ -74,6 +74,12 @@ body#easter-dark {
     transition: all 0.25s ease;
 }
 
+#easter-light .grid-item.half-hidden:hover,
+#easter-dark .grid-item.half-hidden:hover{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 #easter-light a:hover,
 #easter-dark a:hover {
     color: var(--color-title-a-hover);
