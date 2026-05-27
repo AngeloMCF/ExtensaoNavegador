@@ -177,7 +177,6 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                     if (lista[i].isolado) {
                         for (var i = 0; i < 3; i++) {
                             const empty = document.createElement('div');
-                            empty.setAttribute('class', 'grid-item');
                             objt.divContent.append(empty);
                         };
                     };

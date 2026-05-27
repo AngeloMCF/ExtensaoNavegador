@@ -69,6 +69,12 @@ body#halloween-dark {
     transition: all 0.25s ease;
 }
 
+#halloween-light .grid-item.half-hidden:hover,
+#halloween-dark .grid-item.half-hidden:hover{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 #halloween-light a:hover,
 #halloween-dark a:hover {
     color: var(--color-title-a-hover);
