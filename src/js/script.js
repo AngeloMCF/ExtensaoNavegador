@@ -88,10 +88,24 @@ function MakeLinkElement(txt = String()) {
  * @returns Dicionário com os valores preenchidos
  */
 function DivConstruct(divId = String(), NomeH1 = String()) {
-    var divContent = document.querySelector(divId);
-    var idHeader = divId + '-header';
-    var divHeader = document.querySelector(idHeader);
-    var textHeader = document.createElement('h1');
+    let divContent = document.querySelector(divId);
+    let idHeader = divId + '-header';
+    let divHeader = document.querySelector(idHeader);
+    let textHeader = document.createElement('h1');
+
+    let tema = document.body.getAttribute('id')
+
+    if (tema) {
+        
+        switch (tema) {
+            case 'christmas':
+                if (!divHeader.classList.contains(epecialElements.christmas)){
+                    divHeader.classList.add(epecialElements.christmas)
+                }
+            default:
+                break;
+        }
+    }
 
     NomeH1.includes('<a') ? textHeader.appendChild(MakeLinkElement(NomeH1)) : textHeader.textContent = NomeH1;
 
@@ -162,9 +176,9 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                     // SOMENTE ESTÉTICA
                     if (lista[i].isolado) {
                         for (var i = 0; i < 3; i++) {
-                            const vazio = document.createElement('div');
-                            vazio.setAttribute('class', 'grid-item');
-                            objt.divContent.append(vazio);
+                            const empty = document.createElement('div');
+                            empty.setAttribute('class', 'grid-item');
+                            objt.divContent.append(empty);
                         };
                     };
                 }
@@ -172,9 +186,9 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                     // SOMENTE ESTÉTICA
                     if (lista[i].isolado) {
                         for (var i = 0; i < 3; i++) {
-                            const vazio = document.createElement('div');
-                            vazio.setAttribute('class', 'grid-item');
-                            objt.divContent.append(vazio);
+                            const empty = document.createElement('div');
+                            empty.setAttribute('class', 'grid-item');
+                            objt.divContent.append(empty);
                         };
                     };
 
@@ -201,7 +215,6 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                         img.setAttribute('style', 'vertical-align: middle; margin-right: 8px; margin-left: 4px;');
                         img.setAttribute('class', 'tooltip copy-icon');
                         img.setAttribute('src', icons.copy_dark);
-                        // img.setAttribute('src', icons.copy_light);
 
                         button.append(img);
                         conteudo.append(button)
@@ -365,6 +378,8 @@ function gravarlocal(element) {
         }
         else {
             localStorage.removeItem('force')
+
+            removeCustomElement('christmas')
         }
     }
 

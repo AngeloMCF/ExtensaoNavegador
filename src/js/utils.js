@@ -108,7 +108,7 @@ function switchMonth() {
 
             if (!bodyElement.getElementsByClassName('snowflake')[0]) {
                 for (var i = 0; i < 6; i++) {
-                    const snowflake = document.createElement('div');
+                    let snowflake = document.createElement('div');
                     snowflake.setAttribute('class', 'snowflake');
                     snowflake.innerHTML = '❄';
                     if (localTheme === 'light') {
@@ -445,7 +445,22 @@ function startConfetti() {
         }, 500);
     }
 }
+function removeCustomElement(currentTheme){
 
+    // TODO: corrigir para quando usa o force de outro tema e quando habilita novamebte forçado
+    //  isso ainda tem problema quando habilita forçado outra mas no mundo ideal fuciona
+    switch (currentTheme) {
+        case 'christmas':
+            elementsRemove = document.body.querySelectorAll('.snowflake')
+            elementsRemove.forEach(element => {
+                element.classList.remove('snowflake')
+                element.textContent = ''
+            });
+        default:
+            break;
+    }
+
+}
 
 function initUtil() {
     linkSuporte();

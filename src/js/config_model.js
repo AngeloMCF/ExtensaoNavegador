@@ -13,6 +13,11 @@ const imagens = {
     // logo_carnaval: '../images/logo-carnaval.png',
 }
 
+const epecialElements ={
+    christmas : 'christmasTree'
+}
+
+
 const cssAdicionar = []
 
 // Deixar como "#" caso não tenha link e deixar mensagem vazia
@@ -24,7 +29,7 @@ const permitirNatal = true;
 const permitirHalloween = true;
 const permitirEaster = true;
 const permitirCarnaval = false;
-const permitirReveillon = true;
+const permitirReveillon = false;
 
 const advancedMode = true;
 
