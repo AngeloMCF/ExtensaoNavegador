@@ -111,3 +111,8 @@
     opacity: 0.5;
     pointer-events: none;
 }
+
+#christmas .modal-content.sep.christmasTree h1 ::after,
+#christmas .modal-content.sep.christmasTree h1 ::before {
+    content: "";
+}
