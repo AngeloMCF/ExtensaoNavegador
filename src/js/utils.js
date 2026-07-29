@@ -90,21 +90,34 @@ function switchMonth() {
         document.getElementById('comemorative').remove()
     }
 
+    function setLogoTheme(theme = '') {
+
+        let logoDarkKey = 'logo_' + theme + '_dark'
+        let logoLightKey = 'logo_' + theme + '_light'
+        let logoGenericKey = 'logo_' + theme
+
+        function applyLogo(image_path = '') {
+            root.style.setProperty('--url-logo', `url(${image_path})`)
+        }
+
+        if (imagens[logoDarkKey] && localTheme === 'dark') {
+            applyLogo(imagens[logoDarkKey])
+        }
+        else if (imagens[logoLightKey] && localTheme === 'light') {
+            applyLogo(imagens[logoLightKey])
+        }
+        else if (imagens[logoGenericKey]) {
+            applyLogo(imagens[logoGenericKey])
+        }
+    }
+
     function themeChristmas(force = false) {
         if (Boolean(parseInt(localStorage.getItem('theme-Christmas'))) || force) {
 
             linkElement.href = '../css/style-christmas.css';
             bodyElement.setAttribute('id', 'christmas');
 
-            if (imagens['logo_natal_dark']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_natal_dark']})`)
-            }
-            else if (imagens['logo_natal_light']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_natal_light']})`)
-            }
-            else if (imagens['logo_natal']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_natal']})`)
-            }
+            setLogoTheme('christmas');
 
             if (!bodyElement.getElementsByClassName('snowflake')[0]) {
                 for (var i = 0; i < 6; i++) {
@@ -126,16 +139,7 @@ function switchMonth() {
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
 
-            if (imagens['logo_halloween_dark']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween_dark']})`)
-            }
-            else if (imagens['logo_halloween_light']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween_light']})`)
-            }
-            else if (imagens['logo_halloween']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_halloween']})`)
-            }
-
+            setLogoTheme('halloween');
 
             if (!document.getElementsByClassName('pointer')[0]) {
                 pointer.innerHTML = "👻";
@@ -152,16 +156,7 @@ function switchMonth() {
             linkElement.href = '../css/style-easter.css';
             bodyElement.setAttribute('id', 'easter-' + localTheme);
 
-            if (imagens['logo_easter_dark']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_easter_dark']})`)
-            }
-            else if (imagens['logo_easter_light']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_easter_light']})`)
-            }
-            else if (imagens['logo_easter']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_easter']})`)
-            }
-
+            setLogoTheme('easter');
         };
     };
 
@@ -172,16 +167,7 @@ function switchMonth() {
             linkElement.href = '../css/style-reveillon.css';
             bodyElement.setAttribute('id', 'reveillon-' + localTheme);
 
-            if (imagens['logo_reveillon_dark']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon_dark']})`)
-            }
-            else if (imagens['logo_reveillon_light']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon_light']})`)
-            }
-            else if (imagens['logo_reveillon']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_reveillon']})`)
-            }
-
+            setLogoTheme('reveillon');
         };
     };
 
@@ -192,16 +178,7 @@ function switchMonth() {
             linkElement.href = '../css/style-carnaval.css';
             bodyElement.setAttribute('id', 'carnaval');
 
-            if (imagens['logo_carnaval_dark']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval_dark']})`)
-            }
-            else if (imagens['logo_carnaval_light']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval_light']})`)
-            }
-            else if (imagens['logo_carnaval']) {
-                root.style.setProperty('--url-logo', `url(${imagens['logo_carnaval']})`)
-            }
-
+            setLogoTheme('carnaval');
 
             startConfetti();
         };
@@ -445,7 +422,7 @@ function startConfetti() {
         }, 500);
     }
 }
-function removeCustomElement(currentTheme){
+function removeCustomElement(currentTheme) {
 
     // TODO: corrigir para quando usa o force de outro tema e quando habilita novamebte forçado
     //  isso ainda tem problema quando habilita forçado outra mas no mundo ideal fuciona
