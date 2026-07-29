@@ -6,17 +6,18 @@ const imagens = {
     // usado para setar logo por mes comemorativo ou evento
     // (opcional) logo_<tema>_light ou logo_<tema>_dark 
     //            se passar este caminho busca uma imagem específica
-    // logo_natal: '../images/logo-natal.png',
-    // logo_halloween: '../images/logo-halloween.png',
-    // logo_easter: '../images/logo-easter.png',
-    // logo_reveillon: '../images/logo-reveillon.png',
-    // logo_carnaval: '../images/logo-carnaval.png',
+    logo_christmas: '../images/logo-christmas.png',
+    logo_halloween: '../images/logo-halloween.png',
+    // logo_halloween_dark: '../images/logo-halloween-dark.png',
+    // logo_halloween_light: '../images/logo-halloween-light.png',
+    logo_easter: '../images/logo-easter.png',
+    logo_reveillon: '../images/logo-reveillon.png',
+    logo_carnaval: '../images/logo-carnaval.png',
 }
 
-const epecialElements ={
-    christmas : 'christmasTree'
+const epecialElements = {
+    christmas: 'christmasTree'
 }
-
 
 const cssAdicionar = []
 
@@ -90,16 +91,16 @@ const NomesTela = [
         chave: "TOOLS",
         page: 'home'
     },
-    // , {
+    // ,{
     //     id: "#textosCopiar",
     //     h1: "Textos para copiar",
     //     lista: textosCopiar,
     //     chave_url: "URL",
     //     chave: "textosCopiar",
     //     page: 'home'
-    // },
+    // }
     // Não implementado, colocar direto na pagina de pull request
-    // {
+    // ,{
     //     id :"#pr",
     //     h1 : "Pull Request",
     //     lista: pullRequest,

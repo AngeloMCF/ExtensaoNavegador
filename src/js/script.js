@@ -96,10 +96,10 @@ function DivConstruct(divId = String(), NomeH1 = String()) {
     let tema = document.body.getAttribute('id')
 
     if (tema) {
-        
+
         switch (tema) {
             case 'christmas':
-                if (!divHeader.classList.contains(epecialElements.christmas)){
+                if (!divHeader.classList.contains(epecialElements.christmas)) {
                     divHeader.classList.add(epecialElements.christmas)
                 }
             default:
@@ -317,6 +317,33 @@ function initHome() {
 };
 
 
+function initConfig() {
+    if (debug) { console.table(localStorage); }
+
+    validarConexao();
+
+    document.getElementById('cleanCache').addEventListener('click', LimpalocalStorage)
+
+    for (i in defaultConfig) {
+        if (debug) console.log(`initConfig -> defaultConfig: ${i} : ${defaultConfig[i]} `);
+
+        let key = i.replace('theme-', '').toLowerCase();
+
+        if (i.toLowerCase().includes('theme') || i.toLowerCase().includes('habilita')) {
+            document.getElementById(i).addEventListener('click', function () { gravarlocal(this); });
+            document.getElementById(i).checked = Boolean(parseInt(localStorage.getItem(i)))
+        }
+
+        if (i.toLowerCase().includes('theme') && Boolean(parseInt(localStorage.getItem(i)))) {
+            document.getElementById(`force-${key}`).addEventListener('click', function () { gravarlocal(this); });
+            document.getElementById(`allow-force-${key}`).classList.remove('hidden')
+            document.getElementById(`force-${key}`).checked = localStorage.getItem('force') === key;
+        }
+
+    }
+};
+
+
 function setDefaultConfig() {
     if (debug) console.log('setDefaultConfig');
 
@@ -338,9 +365,39 @@ function init() {
     setDefaultConfig();
     try {
         window.onload = loadTheme();
+
+        switch (window.location.pathname) {
+            case '/src/html/popup.html':
+                window.onload = initHome();
+                break;
+            case '/src/html/pullrequest.html':
+                window.onload = validarConexao();
+                break;
+            case '/src/html/config.html':
+                window.onload = initConfig();
+                break;
+            default:
+                break;
+        }
     }
     catch (e) {
-        console.error('loadTheme falhou', e);
+        console.error('init (script) falhou', e);
+    }
+
+
+    if (document.querySelector('.pointer')) {
+
+        try {
+            document.addEventListener('mousemove', (event) => {
+                const cursorElement = document.querySelector('.pointer');
+                const x = event.clientX;
+                const y = event.clientY + window.scrollY;
+
+                cursorElement.style.left = 20 + x + 'px';
+                cursorElement.style.top = 10 + y + 'px';
+            });
+        }
+        catch { }
     }
 };
 
@@ -389,60 +446,4 @@ function gravarlocal(element) {
     switchMonth();
 };
 
-
-function initConfig() {
-    if (debug) { console.table(localStorage); }
-
-    validarConexao();
-
-    document.getElementById('cleanCache').addEventListener('click', LimpalocalStorage)
-
-    for (i in defaultConfig) {
-        if (debug) console.log(`initConfig -> defaultConfig: ${i} : ${defaultConfig[i]} `);
-
-        let key = i.replace('theme-', '').toLowerCase();
-
-        if (i.toLowerCase().includes('theme') || i.toLowerCase().includes('habilita')) {
-            document.getElementById(i).addEventListener('click', function () { gravarlocal(this); });
-            document.getElementById(i).checked = Boolean(parseInt(localStorage.getItem(i)))
-        }
-
-        if (i.toLowerCase().includes('theme') && Boolean(parseInt(localStorage.getItem(i)))) {
-            document.getElementById(`force-${key}`).addEventListener('click', function () { gravarlocal(this); });
-            document.getElementById(`allow-force-${key}`).classList.remove('hidden')
-            document.getElementById(`force-${key}`).checked = localStorage.getItem('force') === key;
-        }
-
-    }
-};
-
 window.onload = init()
-
-switch (window.location.pathname) {
-    case '/src/html/popup.html':
-        window.onload = initHome();
-        break;
-    case '/src/html/pullrequest.html':
-        window.onload = validarConexao();
-        break;
-    case '/src/html/config.html':
-        window.onload = initConfig();
-        break;
-    default:
-        break;
-}
-
-if (document.querySelector('.pointer')) {
-
-    try {
-        document.addEventListener('mousemove', (event) => {
-            const cursorElement = document.querySelector('.pointer');
-            const x = event.clientX;
-            const y = event.clientY + window.scrollY;
-
-            cursorElement.style.left = 20 + x + 'px';
-            cursorElement.style.top = 10 + y + 'px';
-        });
-    }
-    catch { }
-}
