@@ -1,9 +1,11 @@
 # Atalhos Pessoais - Extensão de Navegador
 
-![Versão](https://img.shields.io/badge/versão-3.19.0-blue)
+![Versão](https://img.shields.io/badge/versão-3.20.0-blue)
 ![Manifest](https://img.shields.io/badge/manifest-v3-green)
 
 A **Atalhos Pessoais** é uma extensão para navegadores baseados em Chromium projetada para aumentar a produtividade de desenvolvedores e analistas, centralizando links essenciais, ferramentas de formatação e mensagens rápidas em um único lugar.
+
+** Os temas "Dark" (escuro) são os que têm mais atualizações e estabilidade com compatibilidade de cores**
 
 ## 🚀 Funcionalidades
 

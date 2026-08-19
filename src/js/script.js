@@ -434,15 +434,13 @@ function gravarlocal(element) {
         }
         else {
             localStorage.removeItem('force')
-
-            removeCustomElement('christmas')
         }
     }
-
+    
     if (debug) { console.table(localStorage); }
-
+    removeCustomElement()
+    
     // TODO: padronizar id de tema festivo
-    // tem bug on/off do tema
     switchMonth();
 };
 

@@ -69,55 +69,48 @@ function addCSS() {
     }
 }
 
-function switchMonth() {
-    let date = new Date();
+function setLogoTheme(theme = '') {
 
-    addCSS()
+    let logoGenericKey = 'logo_' + theme
+    let logoDarkKey = logoGenericKey + '_dark'
+    let logoLightKey = logoGenericKey + '_light'
 
-    var updateHtml = true;
+    function applyLogo(image_path = '') {
+        root.style.setProperty('--url-logo', `url(${image_path})`)
+    }
+
+    if (imagens[logoDarkKey] && localTheme === 'dark') {
+        applyLogo(imagens[logoDarkKey])
+    }
+    else if (imagens[logoLightKey] && localTheme === 'light') {
+        applyLogo(imagens[logoLightKey])
+    }
+    else if (imagens[logoGenericKey]) {
+        applyLogo(imagens[logoGenericKey])
+    }
+}
+
+
+function apllyTheme(theme) {
+
+    let updateHtml = true;
     var bodyElement = document.body;
-    const headElement = document.head;
     const linkElement = document.createElement('link');
-    linkElement.id = 'comemorative';
-    linkElement.rel = 'stylesheet';
-    linkElement.type = 'text/css';
+    const headElement = document.head;
+
 
     const sep = bodyElement.getElementsByClassName('sep')[0];
     const pointer = document.createElement('div');
     pointer.classList.add("pointer");
 
-    if (document.getElementById('comemorative')) {
-        document.getElementById('comemorative').remove()
-    }
+    linkElement.id = 'comemorative';
+    linkElement.rel = 'stylesheet';
+    linkElement.type = 'text/css';
 
-    function setLogoTheme(theme = '') {
-
-        let logoDarkKey = 'logo_' + theme + '_dark'
-        let logoLightKey = 'logo_' + theme + '_light'
-        let logoGenericKey = 'logo_' + theme
-
-        function applyLogo(image_path = '') {
-            root.style.setProperty('--url-logo', `url(${image_path})`)
-        }
-
-        if (imagens[logoDarkKey] && localTheme === 'dark') {
-            applyLogo(imagens[logoDarkKey])
-        }
-        else if (imagens[logoLightKey] && localTheme === 'light') {
-            applyLogo(imagens[logoLightKey])
-        }
-        else if (imagens[logoGenericKey]) {
-            applyLogo(imagens[logoGenericKey])
-        }
-    }
-
-    function themeChristmas(force = false) {
-        if (Boolean(parseInt(localStorage.getItem('theme-Christmas'))) || force) {
-
+    switch (theme) {
+        case 'christmas':
             linkElement.href = '../css/style-christmas.css';
             bodyElement.setAttribute('id', 'christmas');
-
-            setLogoTheme('christmas');
 
             if (!bodyElement.getElementsByClassName('snowflake')[0]) {
                 for (var i = 0; i < 6; i++) {
@@ -130,16 +123,10 @@ function switchMonth() {
                     sep.append(snowflake);
                 };
             };
-        };
-
-    }
-
-    function themeHalloween(force = false) {
-        if (Boolean(parseInt(localStorage.getItem('theme-Halloween')) || force)) {
+            break;
+        case 'halloween':
             linkElement.href = '../css/style-halloween.css';
             bodyElement.setAttribute('id', 'halloween-' + localTheme);
-
-            setLogoTheme('halloween');
 
             if (!document.getElementsByClassName('pointer')[0]) {
                 pointer.innerHTML = "👻";
@@ -147,115 +134,95 @@ function switchMonth() {
             };
 
             // sep.classList.add('pumpkins');
-        };
 
-    };
-
-    function themeEaster(force = false) {
-        if (Boolean(parseInt(localStorage.getItem('theme-Easter'))) || force) {
+            break;
+        case 'easter':
             linkElement.href = '../css/style-easter.css';
             bodyElement.setAttribute('id', 'easter-' + localTheme);
 
-            setLogoTheme('easter');
-        };
-    };
-
-    function themeReveillon(force = false) {
-        let allow = Boolean(parseInt(localStorage.getItem('theme-Reveillon')))
-
-        if (allow || (force && allow)) {
+            break;
+        case 'reveillon':
             linkElement.href = '../css/style-reveillon.css';
             bodyElement.setAttribute('id', 'reveillon-' + localTheme);
 
-            setLogoTheme('reveillon');
-        };
+            break;
+        case 'carnaval':
+            if (Boolean(parseInt(localStorage.getItem('theme-Carnaval')))) {
+                linkElement.href = '../css/style-carnaval.css';
+                bodyElement.setAttribute('id', 'carnaval');
+                startConfetti();
+            };
+
+            break;
+        default:
+            updateHtml = false;
+            break;
+    }
+
+
+    if (updateHtml) {
+        headElement.setAttribute('class', localTheme);
+        headElement.append(linkElement);
+        setLogoTheme(theme);
     };
 
-    function themeCarnaval(force = false) {
-        let allow = Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
+}
 
-        if (allow || (force && allow)) {
-            linkElement.href = '../css/style-carnaval.css';
-            bodyElement.setAttribute('id', 'carnaval');
+function switchMonth() {
+    let date = new Date();
 
-            setLogoTheme('carnaval');
+    addCSS()
 
-            startConfetti();
-        };
-
-    };
+    if (document.getElementById('comemorative')) {
+        document.getElementById('comemorative').remove()
+    }
 
     let datePlus7 = new Date(date);
     datePlus7.setDate(datePlus7.getDate() + 7);
     let dateMinus7 = new Date(date);
     dateMinus7.setDate(dateMinus7.getDate() - 7);
 
-    switch (localStorage.getItem('force')) {
-        case 'christmas':
-            themeChristmas(true)
-            break;
-        case 'halloween':
-            themeHalloween(true)
-            break;
-        case 'easter':
-            themeEaster(true)
-            break;
-        case 'carnaval':
-            themeCarnaval(true)
-            break;
-        case 'reveillon':
-            themeReveillon(true)
-            break;
-
-        default:
-
-            switch (date.getMonth() /*0-11*/) {
-                case 11: // Dezembro
-                    // reveillon
-                    if (date.getDate() >= 27) {
-                        themeReveillon();
-                        break;
-                    };
-
-                    themeChristmas();
-                    break;
-                case 9: // Outubro
-                    themeHalloween();
-                    break;
-                case 0: // Janeiro
-                    // reveillon
-                    if (date.getDate() <= 7) {
-                        themeReveillon();
-                    };
-                    break;
-                default:
-                    // carnval
-                    if (
-                        Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
-                        && date >= carnvalStartDate && date <= carnavalDate
-                    ) {
-                        themeCarnaval();
-                        break;
-                    }
-                    // pascoa
-                    else if (easterDate >= dateMinus7 && easterDate <= datePlus7) {
-                        themeEaster();
-                        break;
-                    };
-
-                    updateHtml = false;
-                    root.style.setProperty('--url-logo', `url(${logoImage})`)
-                    break;
-            }
-            break;
+    if (localStorage.getItem('force') !== null) {
+        apllyTheme(localStorage.getItem('force'));
     }
+    else {
+        switch (date.getMonth() /*0-11*/) {
+            case 11: // Dezembro
+                // reveillon
+                if (date.getDate() >= 27) {
+                    apllyTheme('reveillon');
+                    break;
+                };
+                apllyTheme('christmas');
+                break;
+            case 9: // Outubro
+                apllyTheme('halloween');
+                break;
+            case 0: // Janeiro
+                // reveillon
+                if (date.getDate() <= 7) {
+                    apllyTheme('reveillon')
+                };
+                break;
+            default:
+                // carnval
+                if (
+                    Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
+                    && date >= carnvalStartDate && date <= carnavalDate
+                ) {
+                    apllyTheme('carnaval');
+                    break;
+                }
+                // pascoa
+                else if (easterDate >= dateMinus7 && easterDate <= datePlus7) {
+                    apllyTheme('easter');
+                    break;
+                };
 
-    if (updateHtml) {
-        bodyElement.setAttribute('class', localTheme);
-
-        headElement.append(linkElement);
-    };
-
+                root.style.setProperty('--url-logo', `url(${logoImage})`)
+                break;
+        }
+    }
 };
 
 
@@ -308,7 +275,7 @@ function validarConexao() {
         document.getElementsByClassName('connected')[0].className = navigator.onLine ? 'online' : 'offline'
     }
     catch {
-        console.log('Erro ao validar conexão')
+        console.error('Erro ao validar conexão')
     }
 }
 
@@ -422,21 +389,19 @@ function startConfetti() {
         }, 500);
     }
 }
-function removeCustomElement(currentTheme) {
+function removeCustomElement() {
 
-    // TODO: corrigir para quando usa o force de outro tema e quando habilita novamebte forçado
-    //  isso ainda tem problema quando habilita forçado outra mas no mundo ideal fuciona
-    switch (currentTheme) {
-        case 'christmas':
-            elementsRemove = document.body.querySelectorAll('.snowflake')
-            elementsRemove.forEach(element => {
-                element.classList.remove('snowflake')
-                element.textContent = ''
-            });
-        default:
-            break;
+    // Christmas
+    elementsRemove = document.body.querySelectorAll('.snowflake')
+
+    if(elementsRemove){
+
+        elementsRemove.forEach(element => {
+            element.classList.remove('snowflake')
+            element.textContent = ''
+        });
     }
-
+    // end Christmas
 }
 
 function initUtil() {
