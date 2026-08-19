@@ -5,7 +5,7 @@
 
 A **Atalhos Pessoais** é uma extensão para navegadores baseados em Chromium projetada para aumentar a produtividade de desenvolvedores e analistas, centralizando links essenciais, ferramentas de formatação e mensagens rápidas em um único lugar.
 
-** Os temas "Dark" (escuro) são os que têm mais atualizações e estabilidade com compatibilidade de cores**
+**Os temas "Dark" (escuro) são os que têm mais atualizações e estabilidade com compatibilidade de cores**
 
 ## 🚀 Funcionalidades
 
