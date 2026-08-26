@@ -1,10 +1,10 @@
 ﻿import os
 import os.path as path
 import shutil
+import argparse
+import ast
 
-debug_mode: bool = False
-
-dicionario:dict = {
+dicionario_default :dict = {
     'versao' : '',
     'diretorio_raiz': '',
     'diretorio_raiz_conteudo': 'src',
@@ -25,7 +25,7 @@ dicionario:dict = {
         }
 }
 
-def limpa_tela () -> None:
+def clear () -> None:
     """
     Limpa o console do terminal de acordo com o sistema operacional.
     """
@@ -53,61 +53,104 @@ def validar_caminho(path:str) -> bool:
     """
     return os.path.exists(path)
 
-def generate_build():
+def generate_build(dict_release_config, verbose = False):
     """
     Executa o fluxo principal de geração do build da extensão.
     
     O processo inclui a criação de pastas, cópia de manifestos,
     recursos estáticos e scripts, além do empacotamento final em ZIP.
     """
-    build_dir:str = path.join(dicionario['diretorio_saida'])
-    create_dir(build_dir)
     
-    final_dir:str = path.join(dicionario['diretorio_saida'], dicionario['pasta_final'])
+    build_dir:str = path.join(dict_release_config['diretorio_saida'])
+       
+    if verbose:
+        print(f'Creating output dir: {build_dir}')
+
+    create_dir(build_dir)
+    final_dir:str = path.join(build_dir, dict_release_config['pasta_final'])
+
+    if verbose:
+        print('Created.')
+        print(f'Creating output dir folder: {final_dir}')
     
     recreate_dir(final_dir)
+    final_content_dir:str = path.join(build_dir, dict_release_config['pasta_final_conteudo'])
     
-    final_content_dir:str = path.join(build_dir, dicionario['pasta_final_conteudo'])
+    if verbose:
+        print('Created.')
+        print(f'Creating output content dir: {final_content_dir}')
+    
     create_dir(final_content_dir)
     
     if not path.exists(final_dir):
         print('Caminho final nao existe.')
         return
 
-    if len(dicionario['caminho_manifest']) <= 0 :
-        shutil.copy('manifest.json', final_dir)
-    
-    content_root_path:str = path.join(dicionario['diretorio_raiz'] if len(dicionario['diretorio_raiz']) > 0 else os.getcwd(), dicionario['diretorio_raiz_conteudo'])
+    if verbose:
+        print('Created.')
 
-    if len(dicionario['pastas_copiar']) > 0:
-        for i in dicionario['pastas_copiar']:
+    if len(dict_release_config['caminho_manifest']) <= 0:
+        if verbose:
+            print(f'Coping manifest to "{final_dir}".')
+
+        shutil.copy('manifest.json', final_dir)
+        if verbose:
+            print(f'Done.')
+    
+    if verbose:
+        print(f'Coping folder.')
+
+    content_root_path:str = path.join(dict_release_config['diretorio_raiz'] if len(dict_release_config['diretorio_raiz']) > 0 else os.getcwd(), dict_release_config['diretorio_raiz_conteudo'])
+
+    if len(dict_release_config['pastas_copiar']) > 0:
+        for i in dict_release_config['pastas_copiar']:
             copiar_pasta(path.join(content_root_path, i), path.join(final_content_dir, i))
 
-    for file in dicionario['arquivos']:
-        origin_path:str = path.join(dicionario['diretorio_raiz'] , file.replace('/', '\\'))
+        if verbose:
+            print(f'Done.')
+
+    if verbose:
+        print(f'Coping files.')
+
+    for file in dict_release_config['arquivos']:
+        origin_path:str = path.join(dict_release_config['diretorio_raiz'] , file.replace('/', '\\'))
         final_path:str = path.join(final_dir, file.replace('/', '\\'))
 
         if path.isfile(origin_path):
             f = '\\'.join([ texto for texto in file.split('/') if not str(texto).endswith('.js')])
             
-            if dict(dicionario['arquivos_renomear']).get(file):
-                final_path:str = path.join(final_dir, dict(dicionario['arquivos_renomear']).get(file).replace('/', '\\'))
+            if dict(dict_release_config['arquivos_renomear']).get(file):
+                final_path:str = path.join(final_dir, dict(dict_release_config['arquivos_renomear']).get(file).replace('/', '\\'))
             
-            if path.isdir(path.join(dicionario['diretorio_raiz'], f)):
+            if path.isdir(path.join(dict_release_config['diretorio_raiz'], f)):
                 create_dir(path.join(final_dir, f))
 
             shutil.copy(origin_path, final_path)
-        
+    if verbose:
+        print(f'Done.')
+    
     versao:str = get_version(path.join(final_dir, 'manifest.json'))
     
     nem_file_name:str = final_dir + '-' + versao
+    
+    if verbose:
+        print(f'Creating output dir-version: {nem_file_name}')
 
     recreate_dir(nem_file_name)
 
-    copiar_pasta(final_dir, path.join(nem_file_name,dicionario['pasta_final']) )
+    if verbose:
+        print('Done')
+
+    copiar_pasta(final_dir, path.join(nem_file_name,dict_release_config['pasta_final']))
     
-    print(f'Aquivos salvos em: {nem_file_name}')
-    zip_file(path.join(nem_file_name,dicionario['pasta_final']))
+    if verbose:
+        print(f'Files saved in: {nem_file_name}')
+
+    zip_file(path.join(nem_file_name,dict_release_config['pasta_final']))
+
+    if verbose:
+        print(f'Files saved in: {path.join(nem_file_name,dict_release_config['pasta_final'])}.zip')
+
     
 def recreate_dir(dir_name:str) -> None:
     """
@@ -171,7 +214,7 @@ def zip_file(file_name:str) -> None:
         file_name (str): Nome/Caminho do diretório a ser compactado.
     """
     shutil.make_archive(base_name= file_name, format= 'zip', root_dir= file_name)
-    print(f'Aquivos salvos em: {file_name}.zip')
+    
     remove_dir(file_name)
     
 def remove_dir(path:str) -> None:
@@ -207,12 +250,43 @@ def run() -> None:
     """
     Inicia a execução do script de build.
     """
-    limpa_tela()
-    print('iniciando...')
+    clear()
     
-    generate_build()
+    parser = argparse.ArgumentParser(
+            prog= 'Gerar release da estensão',
+            description= 'Criado para gerar ou facilitar a liberação do versão autal da extensão',
+            epilog=f'Se não especificado o caminho com as configurações será usado "dicionario_default" localizao em python/build')
 
-    print('fim')
+    parser.add_argument('path', type=str, nargs='?', help='Caminho do arquivo com as configurações.', default='')
+    parser.add_argument('-v', '--verbose', action='store_true', help="Exibe a exução das etapas sendo feitas.")
+
+    args = parser.parse_args()
     
+    print('Process start.')
+
+    full_path = path.join(os.getcwd(), 'python', args.path)
+        
+    if args.verbose:
+        print(f'Generating release to "{args.path if args.path != '' else 'default'}".')
+    
+    if args.path == '':
+        generate_build(dicionario_default, args.verbose)
+        
+    else:
+        print(full_path)
+
+        if not path.isfile(full_path):
+            raise ValueError('Caminho informado não é um arquivo válido.')
+
+        with open (full_path, 'r', encoding='utf-8') as file:
+            config_data = file.read()
+            
+        config = ast.literal_eval(config_data)
+        
+        generate_build(config, args.verbose)
+
+    print('Process finished.')
+    
+        
 if __name__ == '__main__':
     run()
