@@ -383,23 +383,7 @@ function init() {
     catch (e) {
         console.error('init (script) falhou', e);
     }
-
-
-    if (document.querySelector('.pointer')) {
-
-        try {
-            document.addEventListener('mousemove', (event) => {
-                const cursorElement = document.querySelector('.pointer');
-                const xPosition = event.clientX;
-                const yPosition = event.clientY + window.scrollY;
-
-                cursorElement.style.left = `${xPosition > 0 ? 20 + xPosition : - 30}px`;
-                cursorElement.style.top = `${yPosition > 0 ? 10 + yPosition : - 30}px`;
-
-            });
-        }
-        catch { }
-    }
+    
 };
 
 
@@ -439,6 +423,7 @@ function gravarlocal(element) {
     }
 
     if (debug) { console.table(localStorage); }
+
     removeCustomElement()
 
     // TODO: padronizar id de tema festivo

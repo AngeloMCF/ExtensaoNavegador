@@ -223,7 +223,24 @@ function switchMonth() {
                 break;
         }
     }
+
+    if (document.querySelector('.pointer')) {
+        document.addEventListener('mousemove', (event) => {
+
+            let cursorElement = document.querySelector('.pointer');
+            let xPosition = event.clientX;
+            let yPosition = event.clientY + window.scrollY;
+
+            cursorElement.style.left = `${xPosition > 0 ? 20 + xPosition : - 30}px`;
+            cursorElement.style.top = `${yPosition > 0 ? 10 + yPosition : - 30}px`;
+
+
+        }, { signal: controller.signal });
+    }
+
 };
+
+const controller = new AbortController();
 
 
 function capitalizarPrimeiraLetra(str) {
@@ -394,7 +411,7 @@ function removeCustomElement() {
     // Christmas
     elementsRemove = document.body.querySelectorAll('.snowflake')
 
-    if(elementsRemove){
+    if (elementsRemove) {
 
         elementsRemove.forEach(element => {
             element.classList.remove('snowflake')
@@ -402,6 +419,13 @@ function removeCustomElement() {
         });
     }
     // end Christmas
+
+    // pointer
+    if (document.querySelector('.pointer')) {
+        controller.abort()
+        document.querySelector('.pointer').remove()
+    }
+    // end pointer
 }
 
 function initUtil() {
