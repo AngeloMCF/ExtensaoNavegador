@@ -390,11 +390,12 @@ function init() {
         try {
             document.addEventListener('mousemove', (event) => {
                 const cursorElement = document.querySelector('.pointer');
-                const x = event.clientX;
-                const y = event.clientY + window.scrollY;
+                const xPosition = event.clientX;
+                const yPosition = event.clientY + window.scrollY;
 
-                cursorElement.style.left = 20 + x + 'px';
-                cursorElement.style.top = 10 + y + 'px';
+                cursorElement.style.left = `${xPosition > 0 ? 20 + xPosition : - 30}px`;
+                cursorElement.style.top = `${yPosition > 0 ? 10 + yPosition : - 30}px`;
+
             });
         }
         catch { }
@@ -436,10 +437,10 @@ function gravarlocal(element) {
             localStorage.removeItem('force')
         }
     }
-    
+
     if (debug) { console.table(localStorage); }
     removeCustomElement()
-    
+
     // TODO: padronizar id de tema festivo
     switchMonth();
 };

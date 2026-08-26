@@ -54,6 +54,8 @@
     padding: 0;
     color: var(--color-text);
     /* word-break: break-word; */
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 body {
@@ -388,7 +390,7 @@ a:hover {
     height: 20px;
     border-radius: 50%;
     /* transform: translate(-50%, -50%); */
-    transition: .1s;
+    transition: .05s;
     pointer-events: none;
     animation: ghost 2.5s ease infinite;
 }
