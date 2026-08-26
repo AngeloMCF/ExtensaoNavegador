@@ -110,19 +110,25 @@ function apllyTheme(theme) {
     switch (theme) {
         case 'christmas':
             linkElement.href = '../css/style-christmas.css';
-            bodyElement.setAttribute('id', 'christmas');
+            bodyElement.setAttribute('id', 'christmas-' + localTheme);
 
-            if (!bodyElement.getElementsByClassName('snowflake')[0]) {
-                for (var i = 0; i < 6; i++) {
-                    let snowflake = document.createElement('div');
-                    snowflake.setAttribute('class', 'snowflake');
-                    snowflake.innerHTML = '❄';
-                    if (localTheme === 'light') {
-                        snowflake.style = "color: var(--color-text)";
+            // TODO: fix me, for some reason when open, snowflake[1,2,3,4,5] don't fall correctly.
+            // this setTimeout fix it but isn't right
+            // 
+            setTimeout(() => {
+                if (!bodyElement.getElementsByClassName('snowflake')[0]) {
+                    for (var i = 0; i < 6; i++) {
+                        let snowflake = document.createElement('div');
+                        snowflake.setAttribute('class', 'snowflake');
+                        snowflake.innerHTML = '❄';
+                        if (localTheme === 'light') {
+                            snowflake.style = "color: var(--color-text)";
+                        };
+                        sep.append(snowflake);
                     };
-                    sep.append(snowflake);
                 };
-            };
+            }, 100);
+            
             break;
         case 'halloween':
             linkElement.href = '../css/style-halloween.css';
@@ -147,11 +153,9 @@ function apllyTheme(theme) {
 
             break;
         case 'carnaval':
-            if (Boolean(parseInt(localStorage.getItem('theme-Carnaval')))) {
-                linkElement.href = '../css/style-carnaval.css';
-                bodyElement.setAttribute('id', 'carnaval');
-                startConfetti();
-            };
+            linkElement.href = '../css/style-carnaval.css';
+            bodyElement.setAttribute('id', 'carnaval');
+            startConfetti();
 
             break;
         default:

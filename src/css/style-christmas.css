@@ -1,7 +1,7 @@
 /* ------------------ */
 /* 🎄 NATAL LIGHT */
 /* ------------------ */
-#christmas.light {
+#christmas-light {
     --color-backgruond: #fdfdfd;
     --color-backgruond-button: #eaf6ea;
     --color-backgruond-tooltip: #ffffff;
@@ -22,7 +22,7 @@
 /* ------------------ */
 /* 🎄 NATAL DARK */
 /* ------------------ */
-#christmas.dark {
+#christmas-dark {
     --color-backgruond: #0f1a0f;
     --color-backgruond-button: #1e2e1e;
     --color-backgruond-tooltip: #1a1a1a;
@@ -40,10 +40,16 @@
     --color-offline: rgba(220, 80, 80, 0.7);
 }
 
+body {
+    background-color: var(--color-backgruond);
+}
+
+
 /* ------------------ */
 /* ❄️ Flocos de neve caindo */
 /* ------------------ */
-#christmas .snowflake {
+#christmas-light .snowflake,
+#christmas-dark .snowflake {
     position: fixed;
     top: -25px;
     color: white;
@@ -67,44 +73,53 @@
 }
 
 /* Gerar flocos múltiplos */
-#christmas .snowflake:nth-child(1) {
+#christmas-light .snowflake:nth-child(1),
+#christmas-dark .snowflake:nth-child(1) {
     left: 10%;
     animation-duration: 8s;
     animation-delay: 0s;
 }
 
-#christmas .snowflake:nth-child(2) {
+#christmas-light .snowflake:nth-child(2),
+#christmas-dark .snowflake:nth-child(2) {
     left: 25%;
     animation-duration: 10s;
     animation-delay: 2s;
 }
 
-#christmas .snowflake:nth-child(3) {
+#christmas-light .snowflake:nth-child(3),
+#christmas-dark .snowflake:nth-child(3) {
     left: 40%;
     animation-duration: 7s;
     animation-delay: 1s;
 }
 
-#christmas .snowflake:nth-child(4) {
+#christmas-light .snowflake:nth-child(4),
+#christmas-dark .snowflake:nth-child(4) {
     left: 55%;
     animation-duration: 9s;
     animation-delay: 3s;
 }
 
-#christmas .snowflake:nth-child(5) {
+#christmas-light .snowflake:nth-child(5),
+#christmas-dark .snowflake:nth-child(5) {
     left: 70%;
     animation-duration: 11s;
     animation-delay: 4s;
 }
 
-#christmas .snowflake:nth-child(6) {
+#christmas-light .snowflake:nth-child(6),
+#christmas-dark .snowflake:nth-child(6) {
     left: 85%;
     animation-duration: 8s;
     animation-delay: 5s;
 }
 
-#christmas .modal-content.sep.christmasTree ::after,
-#christmas .modal-content.sep.christmasTree ::before {
+
+#christmas-dark .modal-content.sep.christmasTree ::after,
+#christmas-dark .modal-content.sep.christmasTree ::before,
+#christmas-light .modal-content.sep.christmasTree ::after,
+#christmas-light .modal-content.sep.christmasTree ::before {
     content: "🎄";
     transform: translateX(-50%);
     font-size: 20px;
@@ -112,7 +127,9 @@
     pointer-events: none;
 }
 
-#christmas .modal-content.sep.christmasTree h1 ::after,
-#christmas .modal-content.sep.christmasTree h1 ::before {
+#christmas-dark .modal-content.sep.christmasTree h1 ::after,
+#christmas-dark .modal-content.sep.christmasTree h1 ::before,
+#christmas-light .modal-content.sep.christmasTree h1 ::after,
+#christmas-light .modal-content.sep.christmasTree h1 ::before {
     content: "";
 }

@@ -97,6 +97,8 @@ function DivConstruct(divId = String(), NomeH1 = String()) {
 
     if (tema) {
 
+        tema = tema.replace(/\b(dark|light|\-)/gi, '')
+
         switch (tema) {
             case 'christmas':
                 if (!divHeader.classList.contains(epecialElements.christmas)) {
@@ -383,7 +385,7 @@ function init() {
     catch (e) {
         console.error('init (script) falhou', e);
     }
-    
+
 };
 
 
