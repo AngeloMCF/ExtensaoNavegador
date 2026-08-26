@@ -273,8 +273,7 @@ def run() -> None:
         generate_build(dicionario_default, args.verbose)
         
     else:
-        print(full_path)
-
+        
         if not path.isfile(full_path):
             raise ValueError('Caminho informado não é um arquivo válido.')
 
