@@ -88,6 +88,9 @@ function setLogoTheme(theme = '') {
     else if (imagens[logoGenericKey]) {
         applyLogo(imagens[logoGenericKey])
     }
+    else {
+        applyLogo(logoImage)
+    }
 }
 
 
