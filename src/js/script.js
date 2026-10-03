@@ -142,15 +142,17 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                         link.setAttribute('target', (lista[i].target != undefined && lista[i].target.length > 0) ? lista[i].target : '_blank');
 
                         if (lista[i].title || chave == "HML") {
+                            let _base = '';
                             if (chave == "HML") {
-                                for (base in BasesHML) {
-                                    for (cliente in BasesHML[base].Clientes) {
-                                        if (BasesHML[base].Clientes[cliente].toLowerCase() === lista[i].nome.toLowerCase())
-                                            var _base = BasesHML[base].base
+                                for (let base in BasesHML) {
+
+                                    if (BasesHML[base].Clientes.includes(lista[i].nome.toLowerCase())) {
+                                        _base = BasesHML[base].base
+                                        break
                                     }
                                 }
-                                if (!_base) {
-                                    _base = lista[i].HML_BASE ? lista[i].HML_BASE : 'Base não informada';
+                                if (_base === '') {
+                                    _base = lista[i].HML_BASE ?? 'Base não informada';
                                 }
                             }
 

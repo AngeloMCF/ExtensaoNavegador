@@ -31,7 +31,8 @@ const Clientes = [
     //     HML_BASE: "BASE_HOMOLG_CLIENTE", // (opcional) usado para setar base de homologação
     //          ** Se comentado HML_URL ou DEV_URL ou HML_BASE, não irá aparecer o link  mas o nome do cliente é exibido
     //     isolado: true                    // (opcional) usado para setar ambiente isolado (default false)    
-    //     title: "Exemplo de Mensagem"     // (opcional) usado para setar título do link
+    //     title: "Exemplo de Mensagem"     // (opcional) usado para setar título do link, 
+    //                                              é sobrescrito se for "HML" e tiver valor em HML_BASE ou BasesHML
     //     textOnly: true                   // (opcional) usado para exibir apenas o nome do cliente, sem link
     //                                      //            usar somente qunado existe um html dentro de ./src/hml/
     //                                      //            se passado em link regular não irá funcionar 
@@ -202,7 +203,7 @@ const Pages = [
 const pullRequest = [
     {
         nome: 'Banco Exmplo',
-        URL: ""
+        URL: "https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
     },
     {
         nome: 'Exmplo East',
