@@ -11,11 +11,11 @@ let defaultConfig = {
     'color-mode': 'dark',
     'habilitaPR': 0,
     'habilitaTools': 0,
-    'theme-Christmas': permitirNatal ? 1 : 0,
-    'theme-Halloween': permitirHalloween ? 1 : 0,
-    'theme-Easter': permitirEaster ? 1 : 0,
-    'theme-Carnaval': permitirCarnaval ? 1 : 0,
-    'theme-Reveillon': permitirReveillon ? 1 : 0,
+    'theme-christmas': permitirNatal ? 1 : 0,
+    'theme-halloween': permitirHalloween ? 1 : 0,
+    'theme-easter': permitirEaster ? 1 : 0,
+    'theme-carnaval': permitirCarnaval ? 1 : 0,
+    'theme-reveillon': permitirReveillon ? 1 : 0,
     'numeroParticulas': numeroParticulas ?? 30
 };
 

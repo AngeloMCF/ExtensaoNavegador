@@ -110,61 +110,68 @@ function apllyTheme(theme) {
     linkElement.rel = 'stylesheet';
     linkElement.type = 'text/css';
 
-    switch (theme) {
-        case 'christmas':
-            linkElement.href = '../css/style-christmas.css';
-            bodyElement.setAttribute('id', 'christmas-' + localTheme);
+    if (localStorage.getItem(`theme-${theme}`) === '1') {
 
-            // TODO: fix me, for some reason when open, snowflake[1,2,3,4,5] don't fall correctly.
-            // this setTimeout fix it but isn't right
-            // 
-            setTimeout(() => {
-                if (!bodyElement.getElementsByClassName('snowflake')[0]) {
-                    for (var i = 0; i < 6; i++) {
-                        let snowflake = document.createElement('div');
-                        snowflake.setAttribute('class', 'snowflake');
-                        snowflake.innerHTML = '❄';
-                        if (localTheme === 'light') {
-                            snowflake.style = "color: var(--color-text)";
+        switch (theme) {
+            case 'christmas':
+                linkElement.href = '../css/style-christmas.css';
+                bodyElement.setAttribute('id', 'christmas-' + localTheme);
+
+                // TODO: fix me, for some reason when open, snowflake[1,2,3,4,5] don't fall correctly.
+                // this setTimeout fix it but isn't right
+                // 
+                setTimeout(() => {
+                    if (!bodyElement.getElementsByClassName('snowflake')[0]) {
+                        for (var i = 0; i < 6; i++) {
+                            let snowflake = document.createElement('div');
+                            snowflake.setAttribute('class', 'snowflake');
+                            snowflake.innerHTML = '❄';
+                            if (localTheme === 'light') {
+                                snowflake.style = "color: var(--color-text)";
+                            };
+                            sep.append(snowflake);
                         };
-                        sep.append(snowflake);
                     };
+                }, 100);
+
+                break;
+            case 'halloween':
+                linkElement.href = '../css/style-halloween.css';
+                bodyElement.setAttribute('id', 'halloween-' + localTheme);
+
+                if (!document.getElementsByClassName('pointer')[0]) {
+                    pointer.innerHTML = "👻";
+                    sep.after(pointer);
                 };
-            }, 100);
-            
-            break;
-        case 'halloween':
-            linkElement.href = '../css/style-halloween.css';
-            bodyElement.setAttribute('id', 'halloween-' + localTheme);
 
-            if (!document.getElementsByClassName('pointer')[0]) {
-                pointer.innerHTML = "👻";
-                sep.after(pointer);
-            };
+                // sep.classList.add('pumpkins');
 
-            // sep.classList.add('pumpkins');
+                break;
+            case 'easter':
+                linkElement.href = '../css/style-easter.css';
+                bodyElement.setAttribute('id', 'easter-' + localTheme);
 
-            break;
-        case 'easter':
-            linkElement.href = '../css/style-easter.css';
-            bodyElement.setAttribute('id', 'easter-' + localTheme);
+                break;
+            case 'reveillon':
+                linkElement.href = '../css/style-reveillon.css';
+                bodyElement.setAttribute('id', 'reveillon-' + localTheme);
 
-            break;
-        case 'reveillon':
-            linkElement.href = '../css/style-reveillon.css';
-            bodyElement.setAttribute('id', 'reveillon-' + localTheme);
+                break;
+            case 'carnaval':
+                linkElement.href = '../css/style-carnaval.css';
+                bodyElement.setAttribute('id', 'carnaval');
+                startConfetti();
 
-            break;
-        case 'carnaval':
-            linkElement.href = '../css/style-carnaval.css';
-            bodyElement.setAttribute('id', 'carnaval');
-            startConfetti();
-
-            break;
-        default:
-            updateHtml = false;
-            break;
+                break;
+            default:
+                updateHtml = false;
+                break;
+        }
     }
+    else {
+        updateHtml = false;
+    }
+
 
 
     if (updateHtml) {
@@ -214,7 +221,7 @@ function switchMonth() {
             default:
                 // carnval
                 if (
-                    Boolean(parseInt(localStorage.getItem('theme-Carnaval')))
+                    Boolean(parseInt(localStorage.getItem('theme-carnaval')))
                     && date >= carnvalStartDate && date <= carnavalDate
                 ) {
                     apllyTheme('carnaval');
