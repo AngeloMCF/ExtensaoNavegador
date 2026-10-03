@@ -67,7 +67,7 @@ body#halloween-dark {
 body#halloween-light::before,
 body#halloween-dark::before {
     content: "🦇 🦇";
-    position: absolute;
+    position: fixed;
     top: 15%;
     left: -90px;
     font-size: 28px;
@@ -79,7 +79,7 @@ body#halloween-dark::before {
 body#halloween-light::after,
 body#halloween-dark::after {
     content: "🦇";
-    position: absolute;
+    position: fixed;
     top: 30%;
     left: -90px;
     font-size: 34px;

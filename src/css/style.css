@@ -53,9 +53,6 @@
     margin: 0;
     padding: 0;
     color: var(--color-text);
-    /* word-break: break-word; */
-    overflow-x: hidden;
-    overflow-y: hidden;
 }
 
 body {
@@ -383,13 +380,12 @@ a:hover {
 }
 
 .pointer {
-    position: absolute;
+    position: fixed;
     top: -5%;
     left: -5%;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* transform: translate(-50%, -50%); */
     transition: .05s;
     pointer-events: none;
     animation: ghost 2.5s ease infinite;
