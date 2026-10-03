@@ -243,11 +243,10 @@ function switchMonth() {
 
             let cursorElement = document.querySelector('.pointer');
             let xPosition = event.clientX;
-            let yPosition = event.clientY + window.scrollY;
+            let yPosition = event.clientY;
 
             cursorElement.style.left = `${xPosition > 0 ? 20 + xPosition : - 30}px`;
             cursorElement.style.top = `${yPosition > 0 ? 10 + yPosition : - 30}px`;
-
 
         }, { signal: controller.signal });
     }
