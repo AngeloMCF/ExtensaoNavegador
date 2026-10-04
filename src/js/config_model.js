@@ -16,7 +16,8 @@ const imagens = {
 }
 
 const epecialElements = {
-    christmas: 'christmasTree'
+    christmas: 'christmasTree',
+    halloween: '&#127875;'
 }
 
 const cssAdicionar = []

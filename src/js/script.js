@@ -76,7 +76,7 @@ function MakeLinkElement(txt = String()) {
     link.setAttribute('href', txt.slice(txt.indexOf('href') + 6, txt.indexOf('" ')));
     link.setAttribute('title', txt.slice(txt.indexOf('title=') + 7, txt.indexOf('"><h1>')));
     link.setAttribute('target', '_blank');
-    link.textContent = txt.slice(txt.indexOf('<h1>') + 4, txt.indexOf('</h1>'));
+    link.innerHTML = txt.slice(txt.indexOf('<h1>') + 4, txt.indexOf('</h1>'));
 
     return link
 }
@@ -104,12 +104,24 @@ function DivConstruct(divId = String(), NomeH1 = String()) {
                 if (!divHeader.classList.contains(epecialElements.christmas)) {
                     divHeader.classList.add(epecialElements.christmas)
                 }
+            case 'halloween':
+                if (NomeH1.includes('<a')) {
+                    NomeH1 = NomeH1.slice(0, NomeH1.indexOf('<h1>') + 4)
+                        + epecialElements.halloween + ' '
+                        + NomeH1.slice(NomeH1.indexOf('<h1>') + 4, NomeH1.indexOf('</h1>'))
+                        + ' ' + epecialElements.halloween
+                        + NomeH1.slice(NomeH1.indexOf('</h1>'))
+                }
+                else {
+                    NomeH1 = epecialElements.halloween + ' ' + NomeH1 + ' ' + epecialElements.halloween
+
+                }
             default:
                 break;
         }
     }
 
-    NomeH1.includes('<a') ? textHeader.appendChild(MakeLinkElement(NomeH1)) : textHeader.textContent = NomeH1;
+    NomeH1.includes('<a') ? textHeader.appendChild(MakeLinkElement(NomeH1)) : textHeader.innerHTML += NomeH1;
 
     const dados = { divHeader, idHeader, textHeader, divContent };
     if (debug) { console.log(dados, 'func DivConstruct') };
