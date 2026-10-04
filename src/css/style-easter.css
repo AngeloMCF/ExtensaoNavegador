@@ -96,7 +96,7 @@ body#easter-dark {
 body#easter-light::before,
 body#easter-dark::before {
     content: "🐇";
-    position: absolute;
+    position: fixed;
     bottom: 10%;
     left: -100px;
     font-size: 40px;
@@ -108,7 +108,7 @@ body#easter-dark::before {
 body#easter-light::after,
 body#easter-dark::after {
     content: "🐇";
-    position: absolute;
+    position: fixed;
     bottom: 20%;
     left: -150px;
     font-size: 36px;

@@ -255,7 +255,7 @@ def run() -> None:
     parser = argparse.ArgumentParser(
             prog= 'Gerar release da estensão',
             description= 'Criado para gerar ou facilitar a liberação do versão autal da extensão',
-            epilog=f'Se não especificado o caminho com as configurações será usado "dicionario_default" localizao em python/build')
+            epilog=f'Se não especificado o caminho com as configurações será usado "dicionario_default" localizado em python/build')
 
     parser.add_argument('path', type=str, nargs='?', help='Caminho do arquivo com as configurações.', default='')
     parser.add_argument('-v', '--verbose', action='store_true', help="Exibe a exução das etapas sendo feitas.")
