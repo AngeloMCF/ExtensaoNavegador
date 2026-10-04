@@ -99,6 +99,7 @@ function DivConstruct(divId = String(), NomeH1 = String()) {
 
         tema = tema.replace(/\b(dark|light|\-)/gi, '')
 
+        if (epecialElements[tema])
         switch (tema) {
             case 'christmas':
                 if (!divHeader.classList.contains(epecialElements.christmas)) {
