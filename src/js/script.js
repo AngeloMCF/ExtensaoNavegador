@@ -221,7 +221,7 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
                         button.setAttribute('class', 'copy-btn half-hidden tooltip');
                         button.setAttribute('data-tooltip', texto_tooltip);
                         button.onclick = () => copyToClipBoard(id);
-                        button.textContent = lista[i].nome;
+                        button.innerHTML = lista[i].nome;
 
                         const img = document.createElement('img');
 
@@ -238,7 +238,7 @@ function popContent(objt = { divHeader: Element, idHeader: String, textHeader: E
 
                     if (["PROD", "HML", "DEV"].includes(chave)) {
                         conteudo.setAttribute('class', 'grid-item half-hidden');
-                        conteudo.append(document.createElement('p').textContent = lista[i].nome);
+                        conteudo.append(document.createElement('p').innerHTML = lista[i].nome);
                     }
                     // else if (lista[i].nome && lista[i].textOnly) {
                     //     conteudo.setAttribute('class', 'grid-item half-hidden');
